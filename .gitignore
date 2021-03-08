@@ -1,0 +1,49 @@
+# directories
+node_modules
+dist
+build
+storybook-static
+
+.pnp
+.pnp.js
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+coverage
+.nyc_output
+coverage
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# storybook
+.storybook
+
+# vscode
+.vscode
+
+# eslint
+.eslintcache
