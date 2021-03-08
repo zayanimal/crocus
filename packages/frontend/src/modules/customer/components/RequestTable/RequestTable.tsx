@@ -2,7 +2,7 @@ import { IPriceTypesCount } from '@customer/store/reducers/request.reducer';
 import { Button, Input } from '@material-ui/core';
 import { DeleteOutline } from '@material-ui/icons';
 import { bem, numToRub, numToUsd } from '@utils/formatters';
-import MaterialTable from 'material-table';
+// import MaterialTable from 'material-table';
 import { clone } from 'lodash';
 import React, { ChangeEvent, useMemo } from 'react';
 import './RequestTable.scss';
@@ -78,7 +78,7 @@ const RequestTable: React.SFC<Props> = (props) => {
 
     return (
         <div className={cn()}>
-            <MaterialTable
+            {/* <MaterialTable
                 columns={columns}
                 data={immutableData}
                 options={{
@@ -95,7 +95,7 @@ const RequestTable: React.SFC<Props> = (props) => {
                         emptyDataSourceMessage: 'нет выбранных моделей'
                     }
                 }}
-            />
+            /> */}
         </div>
     );
 };

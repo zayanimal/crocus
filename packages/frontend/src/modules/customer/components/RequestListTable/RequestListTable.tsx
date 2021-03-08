@@ -3,7 +3,7 @@ import { Button, Chip } from '@material-ui/core';
 import { bem } from '@utils/formatters';
 import { formatDistance } from 'date-fns';
 import Ru from 'date-fns/locale/ru';
-import MaterialTable from 'material-table';
+// import MaterialTable from 'material-table';
 import React, { useMemo } from 'react';
 import './RequestListTable.scss';
 
@@ -66,7 +66,7 @@ const RequestListTable: React.FC<Props> = (props) => {
 
     return (
         <div className={cn()}>
-            <MaterialTable
+            {/* <MaterialTable
                 columns={columns}
                 data={data}
                 options={{
@@ -83,7 +83,7 @@ const RequestListTable: React.FC<Props> = (props) => {
                         emptyDataSourceMessage: 'у вас нет проектов'
                     }
                 }}
-            />
+            /> */}
         </div>
     );
 };

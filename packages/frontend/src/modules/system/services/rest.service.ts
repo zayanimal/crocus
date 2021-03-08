@@ -4,7 +4,7 @@ import { IRestService, IHeader } from '@system/interfaces';
 import { ApiUrl } from '@system/decorators';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-@ApiUrl(process.env.REACT_APP_SERVER_URL!)
+@ApiUrl(process.env.API_URL!)
 export class RestService implements IRestService {
     constructor(private tokenService: TokenService) {}
 
