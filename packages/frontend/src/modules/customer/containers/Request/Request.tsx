@@ -6,7 +6,7 @@ import {
     requestDrawerSelectors,
     requestSelectors
 } from '@customer/store/selectors';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import { systemActions } from '@system/store/actions';
 import { RootStateTypes } from '@config/roots';
 import { bem } from '@utils/formatters';

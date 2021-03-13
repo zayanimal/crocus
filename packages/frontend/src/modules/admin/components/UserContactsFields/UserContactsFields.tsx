@@ -1,5 +1,6 @@
 import React from 'react';
-import { InputLabel, TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
 import { handleInput } from '@utils/handlers';
 import { UserControlProps } from '@admin/containers/UserControl';
 import { bem } from '@utils/formatters';

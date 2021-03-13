@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { DropzoneArea } from 'material-ui-dropzone';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const Stock: React.FC = () => (
     <>

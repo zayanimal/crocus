@@ -1,8 +1,9 @@
 import { IPriceTypes } from '@customer/store/reducers/request.reducer';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { bem } from '@utils/formatters';
 import React, { ChangeEvent, MouseEvent, useEffect } from 'react';
-import { List, ListRowRenderer } from 'react-virtualized';
+import List from 'react-virtualized/dist/es/List';
+import type { ListRowRenderer } from 'react-virtualized';
 import './RequestPartnumbers.scss';
 
 const cn = bem('RequestPartnumbers');

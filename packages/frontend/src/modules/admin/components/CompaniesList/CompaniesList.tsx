@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
-import { ColumnProps } from 'react-virtualized';
+import type { ColumnProps } from 'react-virtualized';
 import { TableRowButton } from '@shared/components/TableRowButton';
 import { TableVirtual } from '@shared/components/TableVirtual';
 import { ListHeader } from '@admin/components/ListHeader';

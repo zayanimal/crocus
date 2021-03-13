@@ -1,7 +1,8 @@
 import { Requests } from '@customer/store/reducers/requestsList.reducer';
-import { Button, Chip } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import { bem } from '@utils/formatters';
-import { formatDistance } from 'date-fns';
+import formatDistance from 'date-fns/formatDistance';
 import Ru from 'date-fns/locale/ru';
 // import MaterialTable from 'material-table';
 import React, { useMemo } from 'react';

@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-    TextField,
-    Input,
-    InputLabel,
-    Select,
-    MenuItem,
-    Chip
-} from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Chip from '@material-ui/core/Chip';
 import { handleInput, handleSelect } from '@utils/handlers';
 import { UserControlProps } from '@admin/containers/UserControl';
 import { bem } from '@utils/formatters';

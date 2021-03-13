@@ -1,5 +1,6 @@
 import React, { memo, ChangeEvent } from 'react';
-import { InputLabel, TextField } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 import { memoize, get } from 'lodash';
 import { bem, classes } from '@utils/formatters';
 import { ValidationErrors } from '@shared/interfaces';

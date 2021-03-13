@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import {
-    Table,
-    Column,
-    AutoSizer,
-    InfiniteLoader,
-    ColumnProps
-} from 'react-virtualized';
+import type { ColumnProps } from 'react-virtualized';
+import Table, { Column } from 'react-virtualized/dist/es/Table';
+import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
+import InfiniteLoader from 'react-virtualized/dist/es/InfiniteLoader';
 import { range, set, transform } from 'lodash';
 import uuid from 'uuid-random';
 import { bem } from '@utils/formatters';

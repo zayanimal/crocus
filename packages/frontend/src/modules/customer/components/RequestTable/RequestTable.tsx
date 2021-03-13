@@ -1,6 +1,7 @@
 import { IPriceTypesCount } from '@customer/store/reducers/request.reducer';
-import { Button, Input } from '@material-ui/core';
-import { DeleteOutline } from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import { bem, numToRub, numToUsd } from '@utils/formatters';
 // import MaterialTable from 'material-table';
 import { clone } from 'lodash';

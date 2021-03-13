@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IconButton, MenuItem } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { bem } from '@utils/formatters';
 import './TableRowButton.scss';

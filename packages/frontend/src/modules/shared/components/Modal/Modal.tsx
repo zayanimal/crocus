@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import { bem } from '@utils/formatters';
 import './Modal.scss';
 

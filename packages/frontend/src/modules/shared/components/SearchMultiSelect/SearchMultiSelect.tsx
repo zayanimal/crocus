@@ -1,5 +1,8 @@
 import React, { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
-import { TextField, InputLabel, Chip, ListItem } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import Chip from '@material-ui/core/Chip';
+import ListItem from '@material-ui/core/ListItem';
 import { bem } from '@utils/formatters';
 import './SearchMultiSelect.scss';
 

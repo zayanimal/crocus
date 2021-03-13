@@ -1,6 +1,6 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
-import { Clear } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import Clear from '@material-ui/icons/Clear';
 import { Fields } from '@shared/components/Fields';
 import { bem } from '@utils/formatters';
 import { BANK_FIELDS } from '@admin/constants';

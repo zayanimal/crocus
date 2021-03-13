@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((acc, next) => {
@@ -12,7 +12,9 @@ const envKeys = Object.keys(env).reduce((acc, next) => {
 }, {})
 
 module.exports = {
-    devtool: "inline-source-map",
+    context: process.cwd(),
+
+    devtool: "eval-cheap-module-source-map",
 
     cache: {
         type: 'filesystem',
@@ -23,6 +25,7 @@ module.exports = {
     },
 
     optimization: {
+        minimize: false,
         splitChunks: {
             cacheGroups: {
                 vendors: {
@@ -32,14 +35,15 @@ module.exports = {
                     enforce: true,
                 }
             }
-        }
+        },
+        runtimeChunk: true,
     },
 
     devServer: {
         contentBase: path.join(__dirname, 'build'),
         compress: true,
         watchContentBase: true,
-        progress: true,
+        // progress: true,
         hot: true,
         port: 3000,
         open: true,
@@ -49,6 +53,7 @@ module.exports = {
     entry: path.join(__dirname, 'src', 'index.tsx'),
 
     output: {
+        pathinfo: false,
         filename: 'assets/[name].[fullhash].js',
         path: path.resolve(__dirname, 'build'),
         publicPath: '/'
@@ -83,8 +88,12 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: '/node_modules/'
+                use: {
+                    loader: 'ts-loader',
+                    options: {
+                        transpileOnly: true
+                    }
+                }
             },
             {
                 test: /\.css$|\.s[ac]ss$/i,
@@ -113,11 +122,12 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
 
         new webpack.DefinePlugin(envKeys),
 
         new HtmlWebpackPlugin({
+            inject: true,
             template: path.join(__dirname, 'public', 'index.html')
         })
     ]
