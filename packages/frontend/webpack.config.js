@@ -43,7 +43,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'build'),
         compress: true,
         watchContentBase: true,
-        // progress: true,
+        progress: true,
         hot: true,
         port: 3000,
         open: true,
