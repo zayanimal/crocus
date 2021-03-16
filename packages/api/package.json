@@ -1,5 +1,5 @@
 {
-  "name": "@interaktiv/backend",
+  "name": "@interaktiv/api",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
