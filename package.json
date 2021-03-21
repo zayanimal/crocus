@@ -15,7 +15,9 @@
             "**/@nestjs",
             "**/@nestjs/**",
             "**/jest",
-            "**/jest/**"
+            "**/jest/**",
+            "**/class-transformer",
+            "**/class-transformer/**"
         ]
     },
     "devDependencies": {
