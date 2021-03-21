@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './ListHeader.scss';
 
 const cn = bem('ListHeader');

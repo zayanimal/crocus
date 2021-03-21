@@ -2,7 +2,7 @@ import React, { useEffect, ChangeEvent } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { AuthProps } from '@system/containers/Auth';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './AuthForm.scss';
 
 const cn = bem('AuthForm');

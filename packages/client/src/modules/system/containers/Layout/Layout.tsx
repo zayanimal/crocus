@@ -7,7 +7,7 @@ import { Main } from '@system/components/Main';
 import { Auth } from '@system/containers/Auth';
 import { Notification } from '@system/components/Notification';
 import { systemSelectors } from '@system/store/selectors';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './Layout.scss';
 
 const cn = bem('Layout');

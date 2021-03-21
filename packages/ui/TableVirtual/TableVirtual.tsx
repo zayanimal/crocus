@@ -5,8 +5,8 @@ import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import InfiniteLoader from 'react-virtualized/dist/es/InfiniteLoader';
 import { range, set, transform } from 'lodash';
 import uuid from 'uuid-random';
-import { bem } from '@utils/formatters';
-import { IPaginationMeta } from '@shared/interfaces';
+import { bem } from '@interaktiv/utils';
+import { IPaginationMeta } from '@interaktiv/client/src/modules/shared/interfaces/pagination.interface';
 import 'react-virtualized/styles.css';
 import './TableVirtual.scss';
 

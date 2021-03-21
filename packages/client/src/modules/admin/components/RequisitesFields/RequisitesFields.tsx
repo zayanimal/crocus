@@ -1,6 +1,6 @@
 import React from 'react';
 import { CompanyControlProps } from '@admin/containers/CompanyControl';
-import { Fields } from '@shared/components/Fields';
+import { Fields } from '@interaktiv/ui/Fields';
 import { REQUISITES_FIELDS } from '@admin/constants';
 import './RequisitesFields.scss';
 

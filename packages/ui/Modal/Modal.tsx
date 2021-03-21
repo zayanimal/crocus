@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Button from '@material-ui/core/Button';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './Modal.scss';
 
 const cn = bem('Modal');

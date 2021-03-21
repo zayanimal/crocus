@@ -1,4 +1,4 @@
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 
 const cn = bem('BankRequisitesFields');
 const classes = { class: cn('input'), labelClass: cn('label') };

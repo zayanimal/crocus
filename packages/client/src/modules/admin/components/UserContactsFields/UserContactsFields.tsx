@@ -1,9 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import { handleInput } from '@utils/handlers';
+import { handleInput, bem } from '@interaktiv/utils';
 import { UserControlProps } from '@admin/containers/UserControl';
-import { bem } from '@utils/formatters';
 
 const grid = bem('FlexGrid');
 

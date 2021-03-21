@@ -9,7 +9,7 @@ import {
 import Button from '@material-ui/core/Button';
 import { systemActions } from '@system/store/actions';
 import { RootStateTypes } from '@config/roots';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Request.scss';

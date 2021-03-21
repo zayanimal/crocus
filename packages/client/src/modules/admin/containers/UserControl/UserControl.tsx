@@ -11,8 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { UserAuthFields } from '@admin/components/UserAuthFields';
 import { UserContactsFields } from '@admin/components/UserContactsFields';
 import { FormControls } from '@admin/components/FormControls';
-import { Preloader } from '@shared/components/Preloader';
-import { bem, classes } from '@utils/formatters';
+import { Preloader } from '@interaktiv/ui/Preloader';
+import { bem, classes } from '@interaktiv/utils';
 import './UserControl.scss';
 
 const cn = bem('UserControl');

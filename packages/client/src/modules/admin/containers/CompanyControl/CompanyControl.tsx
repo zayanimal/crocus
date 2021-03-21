@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RootStateTypes } from '@config/roots';
-import { Preloader } from '@shared/components/Preloader';
+import { Preloader } from '@interaktiv/ui/Preloader';
 import { CompanyFields } from '@admin/components/CompanyFields';
 import { FormControls } from '@admin/components/FormControls';
 import { CompanyRequisites } from '@admin/components/CompanyRequisites';
 import { RequisitesDrawer } from '@admin/components/RequisitesDrawer';
-import { SearchMultiSelect } from '@shared/components/SearchMultiSelect';
+import { SearchMultiSelect } from '@interaktiv/ui/SearchMultiSelect';
 import { systemActions } from '@system/store/actions';
 import {
     companiesActions,
@@ -18,7 +18,7 @@ import {
     companySelectors,
     companyControlSelectors
 } from '@admin/store/selectors';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 
 const grid = bem('FlexGrid');
 

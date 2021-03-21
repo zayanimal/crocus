@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
 import Add from '@material-ui/icons/Add';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import { CompanyControlProps } from '@admin/containers/CompanyControl';
 import './CompanyRequisites.scss';
 

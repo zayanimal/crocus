@@ -5,9 +5,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
-import { handleInput, handleSelect } from '@utils/handlers';
+import { handleInput, handleSelect, bem } from '@interaktiv/utils';
 import { UserControlProps } from '@admin/containers/UserControl';
-import { bem } from '@utils/formatters';
 
 const grid = bem('FlexGrid');
 

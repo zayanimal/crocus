@@ -2,11 +2,10 @@ import React, { useMemo } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import type { ColumnProps } from 'react-virtualized';
-import { TableRowButton } from '@shared/components/TableRowButton';
-import { TableVirtual } from '@shared/components/TableVirtual';
+import { TableRowButton, TableVirtual } from '@interaktiv/ui';
 import { ListHeader } from '@admin/components/ListHeader';
 import { UsersProps } from '@admin/containers/Users';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './UsersList.scss';
 
 const cn = bem('UsersList');

@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import type { ColumnProps } from 'react-virtualized';
-import { TableRowButton } from '@shared/components/TableRowButton';
-import { TableVirtual } from '@shared/components/TableVirtual';
+import { TableRowButton, TableVirtual } from '@interaktiv/ui';
 import { ListHeader } from '@admin/components/ListHeader';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import { OrdersProps } from '@admin/containers/Orders';
 import { ORDER_STATUSES } from '@admin/constants';
 import './OrdersList.scss';

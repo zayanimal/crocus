@@ -5,7 +5,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FaceIcon from '@material-ui/icons/Face';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { LayoutProps } from '@system/containers/Layout';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './Header.scss';
 
 const cn = bem('Header');

@@ -5,7 +5,7 @@ import AddBox from '@material-ui/icons/AddBox';
 import AccountBox from '@material-ui/icons/AccountBox';
 import People from '@material-ui/icons/People';
 import Business from '@material-ui/icons/Business';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './Drawer.scss';
 
 const cn = bem('Drawer');

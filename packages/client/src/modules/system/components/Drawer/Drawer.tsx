@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '@icons/logo.png';
 import { LayoutProps } from '@system/containers/Layout';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import { DrawerIcon } from './DrawerIcon';
 import './Drawer.scss';
 

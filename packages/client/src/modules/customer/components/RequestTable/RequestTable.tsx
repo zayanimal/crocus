@@ -2,7 +2,7 @@ import { IPriceTypesCount } from '@customer/store/reducers/request.reducer';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import { bem, numToRub, numToUsd } from '@utils/formatters';
+import { bem, numToRub, numToUsd } from '@interaktiv/utils';
 // import MaterialTable from 'material-table';
 import { clone } from 'lodash';
 import React, { ChangeEvent, useMemo } from 'react';

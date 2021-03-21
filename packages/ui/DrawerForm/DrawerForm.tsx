@@ -3,7 +3,7 @@ import { cond } from 'lodash';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
 import { Transition } from 'react-transition-group';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './DrawerForm.scss';
 
 const cn = bem('DrawerForm');

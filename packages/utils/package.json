@@ -1,0 +1,14 @@
+{
+    "name": "@interaktiv/utils",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "license": "MIT",
+    "dependencies": {
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "react": "~16.8.0"
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.27",
+        "@types/react": "^16.14.4"
+    }
+}

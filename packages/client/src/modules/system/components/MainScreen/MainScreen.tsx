@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { Drawer } from '@system/components/Drawer';
 import { Header } from '@system/components/Header';
-import { Preloader } from '@shared/components/Preloader';
+import { Preloader } from '@interaktiv/ui/Preloader';
 import { LayoutProps } from '@system/containers/Layout';
 import { routeComponent } from '@system/components/MainScreen/routeComponents';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './MainScreen.scss';
 
 const cn = bem('MainScreen');

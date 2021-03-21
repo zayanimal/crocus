@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable prettier/prettier */
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
@@ -9,19 +11,16 @@ const envKeys = Object.keys(env).reduce((acc, next) => {
     acc[`process.env.${next}`] = JSON.stringify(env[next]);
 
     return acc;
-}, {})
+}, {});
 
 module.exports = {
     context: process.cwd(),
 
-    devtool: "eval-cheap-module-source-map",
+    devtool: 'eval-cheap-module-source-map',
 
     cache: {
         type: 'filesystem',
-        cacheDirectory: path.resolve(
-            __dirname,
-            './node_modules/.cache'
-        )
+        cacheDirectory: path.resolve(__dirname, './node_modules/.cache')
     },
 
     optimization: {
@@ -32,11 +31,11 @@ module.exports = {
                     name: 'vendors',
                     test: /node_modules/,
                     chunks: 'all',
-                    enforce: true,
+                    enforce: true
                 }
             }
         },
-        runtimeChunk: true,
+        runtimeChunk: true
     },
 
     devServer: {
@@ -62,6 +61,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js'],
         alias: {
+            'react': path.resolve(__dirname, 'node_modules', 'react'),
             '@/': path.resolve(__dirname, 'src', 'src'),
             '@config': path.resolve(__dirname, 'src', 'config'),
             '@shared': path.resolve(__dirname, 'src', 'modules/shared'),
@@ -104,15 +104,20 @@ module.exports = {
                     {
                         loader: 'sass-resources-loader',
                         options: {
-                            resources: path.join(__dirname, 'src', 'styles', 'shared.scss'),
-                        },
+                            resources: path.join(
+                                __dirname,
+                                'src',
+                                'styles',
+                                'shared.scss'
+                            )
+                        }
                     }
                 ]
             },
             {
                 test: /\.(jpg|jpeg|gif|svg|png)$/,
                 exclude: /fonts/,
-                loader: 'file-loader',
+                loader: 'file-loader'
             },
             {
                 test: /.(ttf|eot|svg|woff|woff2)$/,

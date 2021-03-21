@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 
 export const handleInput = (callback: (val: string) => void) => (
     event: ChangeEvent<HTMLInputElement>

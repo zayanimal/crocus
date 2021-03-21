@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Chip from '@material-ui/core/Chip';
 import ListItem from '@material-ui/core/ListItem';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils';
 import './SearchMultiSelect.scss';
 
 const cn = bem('SearchMultiSelect');

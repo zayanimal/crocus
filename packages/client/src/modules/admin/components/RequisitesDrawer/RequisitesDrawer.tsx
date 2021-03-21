@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { DrawerForm } from '@shared/components/DrawerForm';
+import { DrawerForm } from '@interaktiv/ui/DrawerForm';
 import { RequisitesFields } from '@admin/components/RequisitesFields';
 import { BankRequisitesFields } from '@admin/components/BankRequisitesFields';
-import { bem } from '@utils/formatters';
+import { bem } from '@interaktiv/utils/formatters';
 import { CompanyControlProps } from '@admin/containers/CompanyControl';
 import './RequisitesDrawer.scss';
 
