@@ -2,10 +2,10 @@ import { isString } from 'lodash';
 import { Transform } from 'class-transformer';
 
 export class RowEntity {
-    @Transform((name: string) => name.trim())
+    @Transform(({ value }) => value.trim())
     name!: string;
 
-    @Transform((price) => (isString(price) ? 0 : price))
+    @Transform(({ value }) => (isString(value) ? 0 : value))
     price!: number;
 
     description!: string;

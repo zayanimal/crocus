@@ -5,7 +5,7 @@ import { Transform } from 'class-transformer';
 export class EnduserDto {
     @IsNotEmpty()
     @IsString()
-    @Transform((value: string) => chain(value)
+    @Transform(({ value }) => chain(value)
         .lowerCase()
         .upperFirst()
         .value())

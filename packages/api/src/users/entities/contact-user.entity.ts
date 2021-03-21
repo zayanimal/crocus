@@ -26,5 +26,5 @@ export class ContactUser {
 
     @OneToOne(() => Users, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn()
-    users!: Users
+    users!: Users;
 }

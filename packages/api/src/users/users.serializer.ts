@@ -30,7 +30,7 @@ export class UsersEntity implements IUsersEntity {
     roleId!: string;
 
     @Expose({ groups: ['list', 'find', 'edit'] })
-    @Transform((role: Roles) => role.name)
+    @Transform(({ value }) => value.name)
     role!: Roles;
 
     @Exclude()
@@ -46,6 +46,6 @@ export class UsersEntity implements IUsersEntity {
     company!: Company;
 
     @Expose({ groups: ['find', 'edit'] })
-    @Transform((perm: Permissions[]) => perm.map(({ name }) => name))
+    @Transform(({ value }: { value: Permissions[] }) => value.map(({ name }) => name))
     permissions!: Permissions[];
 }

@@ -7,7 +7,7 @@ export class GoodEntity {
 
     name!: string;
 
-    @Transform((cost) => round(cost * GoodConfig.MARGIN, 2))
+    @Transform(({ value }) => round(value * GoodConfig.MARGIN, 2))
     cost!: number;
 
     date!: string;

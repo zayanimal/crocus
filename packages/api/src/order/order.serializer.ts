@@ -1,43 +1,47 @@
 import { round } from 'lodash';
 import { Exclude, Expose, Transform } from 'class-transformer';
 import { groupSerial } from '@shared/utils/serializer.util';
-import { Company } from "@company/entities/company.entity";
-import { Enduser } from "@enduser/entities/enduser.entity";
-import { Discount } from "@good/discount/entities/discount.entity";
-import { Good } from "@good/entities/good.entity";
-import { Margin } from "@good/margin/entities/margin.entity";
-import { Price } from "@good/price/entities/price.entity";
-import { Quantity } from "@good/quantity/entities/quantity.entity";
-import { OrderStatus } from "@order/order-status/entities/order-status.entity";
-import { Users } from "@users/entities/users.entity";
+import { Company } from '@company/entities/company.entity';
+import { Enduser } from '@enduser/entities/enduser.entity';
+import { Discount } from '@good/discount/entities/discount.entity';
+import { Good } from '@good/entities/good.entity';
+import { Margin } from '@good/margin/entities/margin.entity';
+import { Price } from '@good/price/entities/price.entity';
+import { Quantity } from '@good/quantity/entities/quantity.entity';
+import { OrderStatus } from '@order/order-status/entities/order-status.entity';
+import { Users } from '@users/entities/users.entity';
 import { IOrderEntity } from '@order/interfaces/order-entity.interface';
 
 export const DEFAULT_GROUP = groupSerial('default');
 export const FIND_GROUP = groupSerial('find').concat(DEFAULT_GROUP);
 
 const computeCost = (...values: number[]) => values.reduce(
-    (acc, num) => round(acc * num, 2), 1);
+    (acc, num) => round(acc * num, 2), 1
+);
 
 export class OrderEntity implements IOrderEntity {
     @Expose({ groups: ['default'] }) id!: string;
+
     @Expose({ groups: ['default'] }) rate!: number;
+
     @Expose({ groups: ['default'] }) orderId!: number;
+
     @Expose({ groups: ['default'] }) created!: string;
 
     @Expose({ groups: ['default'] })
-    @Transform((usr) => usr.username)
+    @Transform(({ value }) => value.username)
     user!: Users;
 
     @Expose({ groups: ['default'] })
-    @Transform((comp) => comp.name)
+    @Transform(({ value }) => value.name)
     company!: Company;
 
     @Expose({ groups: ['default'] })
-    @Transform((enduser) => enduser.name)
+    @Transform(({ value }) => value.name)
     enduser!: Enduser;
 
     @Expose({ groups: ['find'] })
-    @Transform((goods) => goods.map((good: Good) => ({
+    @Transform(({ value }) => value.map((good: Good) => ({
         id: good.id,
         name: good.name,
         cost: computeCost(
@@ -50,11 +54,14 @@ export class OrderEntity implements IOrderEntity {
     good!: Good[];
 
     @Exclude() price!: Price[];
+
     @Exclude() discount!: Discount[];
+
     @Exclude() margin!: Margin[];
+
     @Exclude() quantity!: Quantity[];
 
     @Expose({ groups: ['default'] })
-    @Transform((status) => status.status)
+    @Transform(({ value }) => value.status)
     status!: OrderStatus;
 }
