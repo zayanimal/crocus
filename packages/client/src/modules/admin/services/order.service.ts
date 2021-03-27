@@ -1,14 +1,14 @@
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { RestService } from '@system/services/rest.service';
-// import { IListableService } from '@admin/interfaces';
-// import { CompanyEntity } from '@admin/entities';
 import orders from '@admin/services/__mock__/orders.json';
+import order from '@admin/services/__mock__/order.json';
 
 export class OrderService {
-    constructor(private readonly api: RestService) {}
-
-    public getList$(page: number) {
+    public getList$() {
         return of({ response: orders }).pipe(delay(500));
+    }
+
+    public find$() {
+        return of({ response: order }).pipe(delay(500));
     }
 }

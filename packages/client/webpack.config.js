@@ -3,8 +3,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((acc, next) => {
@@ -16,7 +17,7 @@ const envKeys = Object.keys(env).reduce((acc, next) => {
 module.exports = {
     context: process.cwd(),
 
-    devtool: 'eval-cheap-module-source-map',
+    devtool: 'cheap-module-source-map',
 
     cache: {
         type: 'filesystem',
@@ -127,7 +128,9 @@ module.exports = {
     },
 
     plugins: [
-        // new CleanWebpackPlugin(),
+        new ErrorOverlayPlugin(),
+
+        new CleanWebpackPlugin(),
 
         new webpack.DefinePlugin(envKeys),
 

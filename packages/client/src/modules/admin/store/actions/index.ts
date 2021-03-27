@@ -4,6 +4,7 @@ import * as companiesActions from './companies.actions';
 import * as companyControlActions from './company-control.actions';
 import * as searchUserActions from './search-user.actions';
 import * as ordersActions from './orders.actions';
+import * as orderControlActions from './order-control.actions';
 
 export {
     usersActions,
@@ -11,5 +12,6 @@ export {
     companiesActions,
     companyControlActions,
     searchUserActions,
-    ordersActions
+    ordersActions,
+    orderControlActions
 };

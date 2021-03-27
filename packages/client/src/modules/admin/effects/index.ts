@@ -1,21 +1,23 @@
 import { combineEpics, Epic } from 'redux-observable';
 import {
     getUsersList,
-    sendNewUser,
-    removeUser
+    removeUser,
+    sendNewUser
 } from '@admin/effects/users.epic';
-import { getUser, editUser } from '@admin/effects/user-form.epic';
+import { editUser, getUser } from '@admin/effects/user-form.epic';
 import { getCompaniesList } from '@admin/effects/companies.epic';
 import {
-    getCompany,
-    updateCompany,
+    createBankRequisites,
     createCompany,
-    deleteCompany,
     createRequisites,
-    createBankRequisites
+    deleteCompany,
+    getCompany,
+    updateCompany
 } from '@admin/effects/company-form.epic';
 import { searchUser } from '@admin/effects/search-user.epic';
 import { getOrdersList } from '@admin/effects/orders.epic';
+import { getGoodsList } from '@admin/effects/get-goods-list.epic';
+import { filterGoodsList } from '@admin/effects/filter-goods-list.epic';
 
 export const adminEpic: Epic = combineEpics(
     getUsersList,
@@ -31,5 +33,7 @@ export const adminEpic: Epic = combineEpics(
     createRequisites,
     createBankRequisites,
     searchUser,
-    getOrdersList
+    getOrdersList,
+    getGoodsList,
+    filterGoodsList
 );

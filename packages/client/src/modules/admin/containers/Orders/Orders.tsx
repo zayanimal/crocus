@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, useLocation, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RootStateTypes } from '@config/roots';
 import { systemActions } from '@system/store/actions';
 import { ordersActions } from '@admin/store/actions';
 import { ordersSelectors } from '@admin/store/selectors';
 import { OrdersList } from '@admin/components/OrdersList';
+import { OrderControl } from '@admin/containers/OrderControl';
 
 const mapStateToProps = (state: RootStateTypes) => ({
     list: ordersSelectors.list(state),
@@ -33,6 +34,7 @@ const Orders: React.FC<OrdersProps> = (props) => {
     return (
         <Switch>
             <Route exact path={path} render={() => <OrdersList {...props} />} />
+            <Route path={`${path}/add`} render={() => <OrderControl />} />
         </Switch>
     );
 };

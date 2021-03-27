@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useRouteMatch, useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import type { ColumnProps } from 'react-virtualized';
 import { TableRowButton, TableVirtual } from '@interaktiv/ui';
 import { ListHeader } from '@admin/components/ListHeader';
@@ -21,7 +21,9 @@ const OrdersList: React.FC<OrdersProps> = (props) => {
             id: string;
         }
 
-        const onEdit = (rowData: RowData) => () => {};
+        const onEdit = (rowData: RowData) => () => {
+            history.push({ pathname: `${path}/edit` });
+        };
 
         const onRemove = (rowData: RowData) => () => {};
 

@@ -1,7 +1,7 @@
 import { createReducer, getType } from 'typesafe-actions';
 import { userControlActions } from '@admin/store/actions';
 
-interface Validation {
+export interface Validation {
     username: string;
     password: string;
     email: string;
@@ -9,7 +9,7 @@ interface Validation {
     position: string;
 }
 
-interface InitialState {
+export interface InitialState {
     loading: boolean;
     username: string;
     password: string;

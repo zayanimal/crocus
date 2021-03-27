@@ -2,7 +2,7 @@ import { createReducer, getType } from 'typesafe-actions';
 import uuid from 'uuid-random';
 import { companyControlActions, searchUserActions } from '@admin/store/actions';
 import { RequisitesEntity, BankRequisitesEntity } from '@admin/entities';
-import { Normalised } from '@utils/generics';
+import { Normalised } from '@interaktiv/utils/generics';
 
 const initialState = {
     loading: false,
