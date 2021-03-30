@@ -46,8 +46,13 @@ export const putModelInOrder = createAction(
 export const deleteModelInOrder = createAction(
     '[CUSTOMER] DELETE_MODEL_IN_ORDER'
 )<IPriceTypesCount[]>();
+
 export const updateModelInOrder = createAction(
     '[CUSTOMER] UPDATE_MODEL_IN_ORDER'
 )<IPriceTypesCount[]>();
+
 export const clearOrder = createAction('[CUSTOMER] CLEAR_ORDER')();
+
 export const showList = createAction('[CUSTOMER] REQUEST_SHOW_LIST')<boolean>();
+
+export const setValidation = createAction('[ADMIN] SET_VALIDATION')<boolean>();

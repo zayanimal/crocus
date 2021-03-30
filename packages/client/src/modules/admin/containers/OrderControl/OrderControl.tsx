@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 import { GoodsList } from '@shared/components/GoodsList';
+import { OrderControlDrawer } from '@admin/components/OrderControlDrawer';
 import { orderControlSelectors } from '@admin/store/selectors';
 import { orderControlActions } from '@admin/store/actions';
 import type { RootStateTypes } from '@config/roots';
-import { bem } from '@interaktiv/utils/formatters';
-import './OrderControl.scss';
+import { bem } from '@interaktiv/utils';
 
 const cn = bem('OrderControl');
+const grid = bem('FlexGrid');
 
 const mapStateToProps = (state: RootStateTypes) => ({
     modelInputValue: orderControlSelectors.modelInputValue(state),
     modelsData: orderControlSelectors.modelsData(state),
     modelsDataInOrder: orderControlSelectors.modelsDataInOrder(state),
     modelsSelected: orderControlSelectors.modelsSelected(state),
-    listState: orderControlSelectors.listState(state)
+    listState: orderControlSelectors.listState(state),
+    validation: orderControlSelectors.validation(state)
 });
 
 const mapDispatchToProps = {
@@ -44,7 +46,9 @@ const OrderControl: React.FC<Props> = (props) => {
         modelsDataInOrder,
         putModelInOrder,
         listState,
-        showList
+        showList,
+        sendNewProject,
+        validation
     } = props;
 
     useEffect(() => {
@@ -69,8 +73,8 @@ const OrderControl: React.FC<Props> = (props) => {
     };
 
     return (
-        <div className={cn()}>
-            <div className={cn('col1')}>
+        <div className={grid('row')}>
+            <div className={grid('col-3')}>
                 <Button
                     color='secondary'
                     variant='outlined'
@@ -87,7 +91,18 @@ const OrderControl: React.FC<Props> = (props) => {
                     onShowList={showList}
                 />
             </div>
-            <div className={cn('col2')} />
+            <div className={grid('col-9')}>
+                <div className={cn('controls')}>
+                    <Button
+                        variant='outlined'
+                        color='primary'
+                        disabled={!validation}
+                        onClick={sendNewProject}>
+                        Отправить запрос
+                    </Button>
+                </div>
+            </div>
+            <OrderControlDrawer hello='hello' />
         </div>
     );
 };

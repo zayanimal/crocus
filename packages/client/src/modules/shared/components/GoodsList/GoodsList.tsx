@@ -19,6 +19,8 @@ const GoodsList: GoodsListType = (props) => {
         filterModels
     } = props;
 
+    const ESCAPE = 'Escape';
+
     useEffect(() => {
         if (selected.length > 0) {
             onShowList(true);
@@ -27,7 +29,9 @@ const GoodsList: GoodsListType = (props) => {
         }
 
         const keyHandler = (e: KeyboardEvent) => {
-            if (e.keyCode === 27) filterModels('');
+            if (e.key === ESCAPE) {
+                filterModels('');
+            }
         };
 
         document.addEventListener('keydown', keyHandler, false);

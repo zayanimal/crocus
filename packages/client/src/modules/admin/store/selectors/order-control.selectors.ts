@@ -24,3 +24,6 @@ export const orderForSend = (state: RootStateTypes) => ({
     modelsDataInOrder: modelsDataInOrder(state),
     rate: rate(state)
 });
+
+export const validation = (state: RootStateTypes) =>
+    orderControlState(state).validation;

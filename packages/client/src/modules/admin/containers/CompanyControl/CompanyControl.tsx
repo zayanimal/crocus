@@ -15,8 +15,8 @@ import {
     searchUserActions
 } from '@admin/store/actions';
 import {
-    companySelectors,
-    companyControlSelectors
+    companyControlSelectors,
+    companySelectors
 } from '@admin/store/selectors';
 import { bem } from '@interaktiv/utils';
 

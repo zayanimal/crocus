@@ -1,16 +1,4 @@
 .OrderControl {
-    display: flex;
-
-    &__col1 {
-        flex: 20%;
-        padding-top: 1.25em;
-        margin-right: 2em;
-    }
-
-    &__col2 {
-        flex: 80%
-    }
-
     &__controls {
         margin-top: 2em;
     }

@@ -5,11 +5,11 @@ import { Epic } from 'redux-observable';
 import { of } from 'rxjs';
 import {
     catchError,
+    debounceTime,
+    filter,
     first,
     map,
-    filter,
-    switchMap,
-    debounceTime
+    switchMap
 } from 'rxjs/operators';
 import { isActionOf } from 'typesafe-actions';
 

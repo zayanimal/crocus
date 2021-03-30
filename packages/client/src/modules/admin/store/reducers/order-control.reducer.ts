@@ -18,6 +18,7 @@ export interface InitialState {
     modelsDataInOrder: IPriceTypesCount[];
     modelsSelected: IPriceTypes[];
     showList: boolean;
+    validation: boolean;
 }
 
 const initialState = {
@@ -26,7 +27,8 @@ const initialState = {
     modelsData: [],
     modelsDataInOrder: [],
     modelsSelected: [],
-    showList: false
+    showList: false,
+    validation: false
 };
 
 const orderControl = createReducer<InitialState>(initialState, {
@@ -90,6 +92,11 @@ const orderControl = createReducer<InitialState>(initialState, {
     [getType(orderControlActions.showList)]: (state, { payload }) => ({
         ...state,
         showList: payload
+    }),
+
+    [getType(orderControlActions.setValidation)]: (state, { payload }) => ({
+        ...state,
+        validation: payload
     })
 });
 
