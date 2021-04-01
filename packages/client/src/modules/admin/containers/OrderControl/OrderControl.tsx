@@ -76,8 +76,8 @@ const OrderControl: React.FC<Props> = (props) => {
         <div className={grid('row')}>
             <div className={grid('col-3')}>
                 <Button
-                    color='secondary'
-                    variant='outlined'
+                    color="secondary"
+                    variant="outlined"
                     style={{ width: '100%' }}>
                     Заказчик
                 </Button>
@@ -94,15 +94,15 @@ const OrderControl: React.FC<Props> = (props) => {
             <div className={grid('col-9')}>
                 <div className={cn('controls')}>
                     <Button
-                        variant='outlined'
-                        color='primary'
+                        variant="outlined"
+                        color="primary"
                         disabled={!validation}
                         onClick={sendNewProject}>
                         Отправить запрос
                     </Button>
                 </div>
             </div>
-            <OrderControlDrawer hello='hello' />
+            <OrderControlDrawer hello="hello" />
         </div>
     );
 };

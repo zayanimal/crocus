@@ -139,18 +139,18 @@ const RequestDrawer: React.FC<Props> = (props) => {
 
     return (
         <DrawerForm
-            label='Данные о заказчике'
-            width='350'
+            label="Данные о заказчике"
+            width="350"
             toggle={open}
             onClose={close}>
             <div className={cn()}>
                 <div className={cn('row')}>
                     <TextField
-                        label='Название заказчика'
+                        label="Название заказчика"
                         onChange={customerHandler}
                         value={customer}
                         error={customerError}
-                        size='small'
+                        size="small"
                         fullWidth
                         multiline
                         helperText={custHelpText}
@@ -158,11 +158,11 @@ const RequestDrawer: React.FC<Props> = (props) => {
                 </div>
                 <div className={cn('row')}>
                     <TextField
-                        label='Город'
+                        label="Город"
                         onChange={cityHandler}
                         value={city}
                         error={cityError}
-                        size='small'
+                        size="small"
                         helperText={cityHelpText}
                     />
                 </div>
@@ -181,11 +181,11 @@ const RequestDrawer: React.FC<Props> = (props) => {
                 </div> */}
                 <div className={cn('row')}>
                     <TextField
-                        label='Дополнительная информация'
+                        label="Дополнительная информация"
                         onChange={commentHandler}
                         value={comment}
                         error={commentError}
-                        size='small'
+                        size="small"
                         fullWidth
                         multiline
                         helperText={commentHelpText}

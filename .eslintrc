@@ -31,7 +31,6 @@
             "allowSeparatedGroups": false
         }],
         "quotes": ["error", "single"],
-        "jsx-quotes": ["error", "prefer-single"],
         "indent": ["error", 4],
         "@typescript-eslint/indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
@@ -51,7 +50,6 @@
                 "printWidth": 80,
                 "singleQuote": true,
                 "trailingComma": "none",
-                "jsxSingleQuote": true,
                 "jsxBracketSameLine": true
             }
         ]
