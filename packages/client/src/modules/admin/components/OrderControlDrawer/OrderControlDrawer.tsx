@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import KeyboardDatePicker from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@material-ui/pickers';
 import { DrawerForm } from '@interaktiv/ui';
 import { bem } from '@interaktiv/utils';
 import type { OrderControlDrawerType } from './OrderControlDrawer.interface';
@@ -15,7 +15,7 @@ const OrderControlDrawer: OrderControlDrawerType = (props) => {
         <DrawerForm
             label="Данные о заказчике"
             width="350"
-            toggle
+            toggle={false}
             onClose={() => {}}>
             <div className={cn()}>
                 <div className={cn('row')}>
@@ -40,11 +40,11 @@ const OrderControlDrawer: OrderControlDrawerType = (props) => {
                         helperText=""
                     />
                 </div>
-                {/* <div className={cn('row')}>
+                <div className={cn('row')}>
                     <KeyboardDatePicker
                         disableToolbar
-                        onChange={dateHandler}
-                        value={date}
+                        onChange={() => {}}
+                        value=""
                         variant="inline"
                         format="dd/MM/yyyy"
                         margin="normal"
@@ -52,7 +52,7 @@ const OrderControlDrawer: OrderControlDrawerType = (props) => {
                         minDate={new Date()}
                         helperText="Срок поставки"
                     />
-                </div> */}
+                </div>
                 <div className={cn('row')}>
                     <TextField
                         label="Дополнительная информация"

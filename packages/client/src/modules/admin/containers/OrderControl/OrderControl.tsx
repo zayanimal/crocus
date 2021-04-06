@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { TableVirtual } from '@interaktiv/ui';
 import { GoodsList } from '@shared/components/GoodsList';
 import { OrderControlDrawer } from '@admin/components/OrderControlDrawer';
 import { orderControlSelectors } from '@admin/store/selectors';
 import { orderControlActions } from '@admin/store/actions';
 import type { RootStateTypes } from '@config/roots';
 import { bem } from '@interaktiv/utils';
+import { columns } from './OrderControl.columns';
 
 const cn = bem('OrderControl');
 const grid = bem('FlexGrid');
@@ -92,6 +94,16 @@ const OrderControl: React.FC<Props> = (props) => {
                 />
             </div>
             <div className={grid('col-9')}>
+                <TableVirtual
+                    list={[]}
+                    getList={() => {}}
+                    columns={columns}
+                    meta={{
+                        currentPage: 0,
+                        totalItems: 0,
+                        totalPages: 0
+                    }}
+                />
                 <div className={cn('controls')}>
                     <Button
                         variant="outlined"

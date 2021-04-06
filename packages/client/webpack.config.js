@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const ELintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -129,6 +130,8 @@ module.exports = {
 
     plugins: [
         new ErrorOverlayPlugin(),
+
+        new ELintPlugin(),
 
         new CleanWebpackPlugin(),
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ColumnProps } from 'react-virtualized';
 import Table, { Column } from 'react-virtualized/dist/es/Table';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
@@ -39,7 +39,7 @@ interface Props {
     list: object[];
     getList: (limit: number) => void;
     columns: ColumnProps[];
-    meta: IPaginationMeta;
+    meta: Pick<IPaginationMeta, 'currentPage' | 'totalItems' | 'totalPages'>;
 }
 
 const TableVirtual: React.FC<Props> = (props) => {
