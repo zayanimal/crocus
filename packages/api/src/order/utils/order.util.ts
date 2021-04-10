@@ -9,29 +9,28 @@ import { IOrderReduceArr } from "@order/interfaces";
  * Проверка прав на изменеие заказа
  * @param group
  */
-export const checkGroup = (group: string[]) => (role: string) => group.some(
-    (item) => (item === role)
-);
+export const checkGroup = (group: string[]) => (role: string) =>
+  group.some((item) => item === role);
 
 /** Аккумулятор для создания/обновления заказа */
 export class OrderAccumulator {
-    good: Good[] = [];
-    price: Price[] = [];
-    margin: Margin[] = [];
-    discount: Discount[] = [];
-    quantity: Quantity[] = [];
+  good: Good[] = [];
+  price: Price[] = [];
+  margin: Margin[] = [];
+  discount: Discount[] = [];
+  quantity: Quantity[] = [];
 
-    static create() {
-        return new OrderAccumulator();
-    }
+  static create() {
+    return new OrderAccumulator();
+  }
 
-    push([good, price, margin, disc, qty]: IOrderReduceArr) {
-        this.good.push(good);
-        this.price.push(price);
-        this.margin.push(margin);
-        this.discount.push(disc);
-        this.quantity.push(qty);
+  push([good, price, margin, disc, qty]: IOrderReduceArr) {
+    this.good.push(good);
+    this.price.push(price);
+    this.margin.push(margin);
+    this.discount.push(disc);
+    this.quantity.push(qty);
 
-        return this;
-    }
+    return this;
+  }
 }

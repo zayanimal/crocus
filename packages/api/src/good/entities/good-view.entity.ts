@@ -1,8 +1,8 @@
-import { ViewEntity, ViewColumn } from 'typeorm';
+import { ViewEntity, ViewColumn } from "typeorm";
 
 /** Поле cost по умолчанию умножается на 10% */
 @ViewEntity({
-    expression: `
+  expression: `
     --sql
         select
             distinct on(p."goodId")
@@ -16,21 +16,21 @@ import { ViewEntity, ViewColumn } from 'typeorm';
         left join price p on p."goodId" = g.id
         where p.date <= current_timestamp
         order by p."goodId", p.date desc;
-    `
+    `,
 })
 export class GoodView {
-    @ViewColumn()
-    id!: string;
+  @ViewColumn()
+  id!: string;
 
-    @ViewColumn()
-    name!: string;
+  @ViewColumn()
+  name!: string;
 
-    @ViewColumn()
-    cost!: number;
+  @ViewColumn()
+  cost!: number;
 
-    @ViewColumn()
-    date!: string;
+  @ViewColumn()
+  date!: string;
 
-    @ViewColumn()
-    vendor!: string;
+  @ViewColumn()
+  vendor!: string;
 }

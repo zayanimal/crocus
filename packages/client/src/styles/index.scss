@@ -1,32 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import '@styles/_colors.scss';
-@import '@styles/_grid.scss';
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import "@styles/_colors.scss";
+@import "@styles/_grid.scss";
 
 :root {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 ::before,
 ::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
-html, body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    color: var(--color-default);
+html,
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-default);
 }
 
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 ul {
-    list-style-type: none;
-    padding-inline-start: 0;
+  list-style-type: none;
+  padding-inline-start: 0;
 }
 
 li + li {
-    margin-top: 0.5em;
+  margin-top: 0.5em;
 }

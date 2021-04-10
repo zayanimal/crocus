@@ -1,21 +1,21 @@
-import { createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { processType } from '@interaktiv/utils';
-import { rootReducer, rootEpic } from '@config/roots';
-import { dependencies } from '@config/container';
+import { createStore, applyMiddleware } from "redux";
+import { createEpicMiddleware } from "redux-observable";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { processType } from "@interaktiv/utils";
+import { rootReducer, rootEpic } from "@config/roots";
+import { dependencies } from "@config/container";
 
 const epicMiddleware = createEpicMiddleware({ dependencies });
 
 export const configureStore = () => {
-    const store = createStore(
-        rootReducer,
-        processType('development')
-            ? composeWithDevTools(applyMiddleware(epicMiddleware))
-            : applyMiddleware(epicMiddleware)
-    );
+  const store = createStore(
+    rootReducer,
+    processType("development")
+      ? composeWithDevTools(applyMiddleware(epicMiddleware))
+      : applyMiddleware(epicMiddleware)
+  );
 
-    epicMiddleware.run(rootEpic);
+  epicMiddleware.run(rootEpic);
 
-    return store;
+  return store;
 };

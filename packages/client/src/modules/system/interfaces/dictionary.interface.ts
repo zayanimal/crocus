@@ -1,9 +1,9 @@
 export interface Dictionary {
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }
 
 export interface DictionaryPayload {
-    type: string;
-    names: string[];
+  type: string;
+  names: string[];
 }

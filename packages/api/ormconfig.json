@@ -1,10 +1,10 @@
 {
-    "type": "postgres",
-    "host": "pgsql",
-    "port": 5432,
-    "username": "postgres",
-    "password": "secret",
-    "database": "interaktiv",
-    "entities": ["dist/**/*.entity{.ts,.js}"],
-    "synchronize": true
+  "type": "postgres",
+  "host": "pgsql",
+  "port": 5432,
+  "username": "postgres",
+  "password": "secret",
+  "database": "interaktiv",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
 }

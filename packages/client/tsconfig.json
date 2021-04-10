@@ -1,26 +1,20 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-        "baseUrl": "src",
-        "paths": {
-          "@/*": ["/*"],
-          "@config/*": ["config/*"],
-          "@shared/*": ["modules/shared/*"],
-          "@admin/*": ["modules/admin/*"],
-          "@customer/*": ["modules/customer/*"],
-          "@system/*": ["modules/system/*"],
-          "@images/*": ["assets/images/*"],
-          "@icons/*": ["assets/icons/*"],
-          "@utils/*": ["utils/*"],
-          "@styles/*": ["styles/*"]
-        }
-    },
-    "include": [
-        "src",
-        "./src/declaration.d.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "build"
-    ]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["modules/shared/*"],
+      "@admin/*": ["modules/admin/*"],
+      "@customer/*": ["modules/customer/*"],
+      "@system/*": ["modules/system/*"],
+      "@images/*": ["assets/images/*"],
+      "@icons/*": ["assets/icons/*"],
+      "@utils/*": ["utils/*"],
+      "@styles/*": ["styles/*"]
+    }
+  },
+  "include": ["src", "./src/declaration.d.ts"],
+  "exclude": ["node_modules", "build"]
 }

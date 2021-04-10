@@ -1,7 +1,7 @@
-import type { FC } from 'react';
+import type { FC } from "react";
 
 interface OrderControlDrawerProps {
-    hello: string;
+  hello: string;
 }
 
 export type OrderControlDrawerType = FC<OrderControlDrawerProps>;

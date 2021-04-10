@@ -1,1 +1,1 @@
-export * from './UserAuthFields';
+export * from "./UserAuthFields";

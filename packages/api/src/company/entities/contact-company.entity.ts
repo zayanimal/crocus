@@ -1,36 +1,36 @@
 import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    OneToOne,
-    JoinColumn
-} from 'typeorm';
-import { Company } from '@company/entities/company.entity';
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
+import { Company } from "@company/entities/company.entity";
 
 @Entity()
 export class ContactCompany {
-    @PrimaryGeneratedColumn('uuid')
-    id!: string;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
-    @Column({ type: 'varchar', length: 35 })
-    email!: string;
+  @Column({ type: "varchar", length: 35 })
+  email!: string;
 
-    @Column({ type: 'varchar', length: 35 })
-    phone!: string;
+  @Column({ type: "varchar", length: 35 })
+  phone!: string;
 
-    @Column({ type: 'varchar', length: 35 })
-    website!: string;
+  @Column({ type: "varchar", length: 35 })
+  website!: string;
 
-    @Column({ type: 'uuid' })
-    companyId!: string;
+  @Column({ type: "uuid" })
+  companyId!: string;
 
-    @OneToOne(() => Company, { cascade: true, onDelete: 'CASCADE' })
-    @JoinColumn()
-    company!: Company;
+  @OneToOne(() => Company, { cascade: true, onDelete: "CASCADE" })
+  @JoinColumn()
+  company!: Company;
 
-    setCompanyId(id: string) {
-        this.companyId = id;
+  setCompanyId(id: string) {
+    this.companyId = id;
 
-        return this;
-    }
+    return this;
+  }
 }

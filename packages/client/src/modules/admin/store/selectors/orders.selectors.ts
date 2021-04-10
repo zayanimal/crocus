@@ -1,4 +1,4 @@
-import { RootStateTypes } from '@config/roots';
+import { RootStateTypes } from "@config/roots";
 
 const ordersState = (state: RootStateTypes) => state.admin.orders;
 

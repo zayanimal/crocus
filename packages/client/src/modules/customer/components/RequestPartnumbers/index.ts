@@ -1,1 +1,1 @@
-export * from './RequestPartnumbers';
+export * from "./RequestPartnumbers";

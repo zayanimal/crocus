@@ -4,16 +4,16 @@ import { Company } from "@company/entities/company.entity";
 import { ContactUser } from "@users/entities";
 
 export interface IUsersEntity {
-    id: string;
-    username: string;
-    password: string;
-    time: string;
-    isActive: boolean;
-    roleId: string;
-    role: Roles;
-    contactsId: string;
-    contacts: ContactUser;
-    companyId: string | null;
-    company: Company;
-    permissions: Permissions[];
+  id: string;
+  username: string;
+  password: string;
+  time: string;
+  isActive: boolean;
+  roleId: string;
+  role: Roles;
+  contactsId: string;
+  contacts: ContactUser;
+  companyId: string | null;
+  company: Company;
+  permissions: Permissions[];
 }

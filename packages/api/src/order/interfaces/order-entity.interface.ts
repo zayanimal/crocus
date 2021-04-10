@@ -9,17 +9,17 @@ import { OrderStatus } from "@order/order-status/entities/order-status.entity";
 import { Users } from "@users/entities/users.entity";
 
 export interface IOrderEntity {
-    id: string;
-    rate: number;
-    orderId: number;
-    created: string;
-    user: Users;
-    company: Company;
-    enduser: Enduser;
-    good: Good[];
-    price: Price[];
-    discount: Discount[];
-    margin: Margin[];
-    quantity: Quantity[];
-    status: OrderStatus;
+  id: string;
+  rate: number;
+  orderId: number;
+  created: string;
+  user: Users;
+  company: Company;
+  enduser: Enduser;
+  good: Good[];
+  price: Price[];
+  discount: Discount[];
+  margin: Margin[];
+  quantity: Quantity[];
+  status: OrderStatus;
 }

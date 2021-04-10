@@ -5,12 +5,12 @@ import { Quantity } from "@good/quantity/entities/quantity.entity";
 import { Price } from "@good/price/entities/price.entity";
 
 export interface IOrderReduce {
-    good: Good[];
-    price: Price[];
-    margin: Margin[];
-    discount: Discount[];
-    quantity: Quantity[];
-    push: (items: IOrderReduceArr) => IOrderReduce;
+  good: Good[];
+  price: Price[];
+  margin: Margin[];
+  discount: Discount[];
+  quantity: Quantity[];
+  push: (items: IOrderReduceArr) => IOrderReduce;
 }
 
 export type IOrderReduceArr = [Good, Price, Margin, Discount, Quantity];

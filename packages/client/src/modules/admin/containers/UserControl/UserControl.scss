@@ -1,11 +1,11 @@
 .UserControl {
-    &__status {
-        margin-top: 3em * 1.5;
-        display: flex;
-        align-items: center;
+  &__status {
+    margin-top: 3em * 1.5;
+    display: flex;
+    align-items: center;
 
-        .PrivateSwitchBase-root-5 {
-            margin-left: -12px;
-        }
+    .PrivateSwitchBase-root-5 {
+      margin-left: -12px;
     }
+  }
 }

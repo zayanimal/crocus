@@ -1,56 +1,56 @@
-import React, { useState, useEffect, useRef } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { bem } from '@interaktiv/utils';
-import './TableRowButton.scss';
+import React, { useState, useEffect, useRef } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { bem } from "@interaktiv/utils";
+import "./TableRowButton.scss";
 
-const cn = bem('TableRowButton');
+const cn = bem("TableRowButton");
 
 interface TableRowButtonProps {
-    onEdit?: () => void;
-    onRemove?: () => void;
+  onEdit?: () => void;
+  onRemove?: () => void;
 }
 
 const TableRowButton: React.FC<TableRowButtonProps> = (props) => {
-    const { children, onEdit = () => {}, onRemove = () => {} } = props;
-    const [open, setOpen] = useState(false);
+  const { children, onEdit = () => {}, onRemove = () => {} } = props;
+  const [open, setOpen] = useState(false);
 
-    const paper = useRef<HTMLDivElement>(null);
-    const onOpen = () => {
-        setOpen(!open);
+  const paper = useRef<HTMLDivElement>(null);
+  const onOpen = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (!paper.current?.contains(target)) {
+        setOpen(false);
+      }
     };
 
-    useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
+    document.addEventListener("click", handleClick, false);
 
-            if (!paper.current?.contains(target)) {
-                setOpen(false);
-            }
-        };
+    return () => {
+      document.removeEventListener("click", handleClick, false);
+    };
+  });
 
-        document.addEventListener('click', handleClick, false);
-
-        return () => {
-            document.removeEventListener('click', handleClick, false);
-        };
-    });
-
-    return (
-        <div ref={paper}>
-            <IconButton size='medium' onClick={onOpen}>
-                <MoreVertIcon fontSize='inherit' />
-            </IconButton>
-            {open && (
-                <div className={cn('paper')}>
-                    <MenuItem onClick={onEdit}>Редактировать</MenuItem>
-                    <MenuItem onClick={onRemove}>Удалить</MenuItem>
-                    {children}
-                </div>
-            )}
+  return (
+    <div ref={paper}>
+      <IconButton size="medium" onClick={onOpen}>
+        <MoreVertIcon fontSize="inherit" />
+      </IconButton>
+      {open && (
+        <div className={cn("paper")}>
+          <MenuItem onClick={onEdit}>Редактировать</MenuItem>
+          <MenuItem onClick={onRemove}>Удалить</MenuItem>
+          {children}
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export { TableRowButton };

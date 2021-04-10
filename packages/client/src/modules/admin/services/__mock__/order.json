@@ -1,23 +1,23 @@
 {
-    "id": "2342wsdfsdf",
-    "orderId": 666,
-    "created": "2020-12-30T11:25:58.836Z",
-    "good": [
-        {
-            "id": "sdf2134",
-            "name": "DES-3200-28",
-            "price": 120,
-            "quantity": 100
-        },
-        {
-            "id": "sdf2134",
-            "name": "DES-3200-28/ME",
-            "price": 220,
-            "quantity": 15
-        }
-    ],
-    "company": "Цветочек",
-    "enduser": "Известняки и доломиты",
-    "status": 1,
-    "rate": 75
+  "id": "2342wsdfsdf",
+  "orderId": 666,
+  "created": "2020-12-30T11:25:58.836Z",
+  "good": [
+    {
+      "id": "sdf2134",
+      "name": "DES-3200-28",
+      "price": 120,
+      "quantity": 100
+    },
+    {
+      "id": "sdf2134",
+      "name": "DES-3200-28/ME",
+      "price": 220,
+      "quantity": 15
+    }
+  ],
+  "company": "Цветочек",
+  "enduser": "Известняки и доломиты",
+  "status": 1,
+  "rate": 75
 }

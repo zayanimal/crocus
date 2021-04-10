@@ -1,1 +1,1 @@
-export * from '@order/constants/order-groups.constant';
+export * from "@order/constants/order-groups.constant";

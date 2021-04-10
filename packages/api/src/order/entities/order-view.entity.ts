@@ -1,7 +1,7 @@
-import { ViewEntity, ViewColumn, Connection } from 'typeorm';
+import { ViewEntity, ViewColumn, Connection } from "typeorm";
 
 @ViewEntity({
-    expression: `
+  expression: `
         SELECT
             "o"."id" AS "id",
             "o"."orderId" AS "orderId",
@@ -19,27 +19,27 @@ import { ViewEntity, ViewColumn, Connection } from 'typeorm';
         ON "e"."id"="o"."enduserId"
         LEFT JOIN "order_status" "s"
         ON "s"."id"="o"."statusId"
-    `
+    `,
 })
 export class OrderView {
-    @ViewColumn()
-    id!: string;
+  @ViewColumn()
+  id!: string;
 
-    @ViewColumn()
-    orderId!: number;
+  @ViewColumn()
+  orderId!: number;
 
-    @ViewColumn()
-    created!: string;
+  @ViewColumn()
+  created!: string;
 
-    @ViewColumn()
-    username!: string;
+  @ViewColumn()
+  username!: string;
 
-    @ViewColumn()
-    company!: string;
+  @ViewColumn()
+  company!: string;
 
-    @ViewColumn()
-    enduser!: string;
+  @ViewColumn()
+  enduser!: string;
 
-    @ViewColumn()
-    status!: number;
+  @ViewColumn()
+  status!: number;
 }

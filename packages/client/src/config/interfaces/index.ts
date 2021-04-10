@@ -1,1 +1,1 @@
-export * from '@config/interfaces/epic.interface';
+export * from "@config/interfaces/epic.interface";

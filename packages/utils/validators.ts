@@ -1,13 +1,13 @@
 export const validation = {
-    empty(value: string) {
-        return value.length === 0;
-    },
+  empty(value: string) {
+    return value.length === 0;
+  },
 
-    length(value: string, size: number) {
-        return value.length > size;
-    },
+  length(value: string, size: number) {
+    return value.length > size;
+  },
 
-    translit(value: string) {
-        return /[a-z]/gim.test(value);
-    }
+  translit(value: string) {
+    return /[a-z]/gim.test(value);
+  },
 };

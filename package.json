@@ -1,39 +1,39 @@
 {
-    "name": "interaktiv",
-    "version": "1.0.0",
-    "license": "MIT",
-    "private": true,
-    "scripts": {
-        "start": "lerna run --scope @interaktiv/client start --stream",
-        "start:api": "lerna run --scope @interaktiv/api start:dev --stream"
-    },
-    "devDependencies": {
-        "lerna": "^4.0.0",
-        "lerna-update-wizard": "^0.17.8"
-    },
-    "workspaces": {
-        "packages": [
-            "packages/*"
-        ],
-        "nohoist": [
-            "**/@types",
-            "**/@types/**",
-            "**/typeorm",
-            "**/typeorm/**",
-            "**/@nestjs",
-            "**/@nestjs/**",
-            "**/react",
-            "**/react/**",
-            "**/react-dom",
-            "**/react-dom/**",
-            "**/react-redux",
-            "**/react-redux/**",
-            "**/react-router-dom",
-            "**/react-router-dom/**",
-            "**/@testing-library",
-            "**/@testing-library/**",
-            "**jest",
-            "**jest/**"
-        ]
-    }
+  "name": "interaktiv",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "lerna run --scope @interaktiv/client start --stream",
+    "start:api": "lerna run --scope @interaktiv/api start:dev --stream"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "lerna-update-wizard": "^0.17.8"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@types",
+      "**/@types/**",
+      "**/typeorm",
+      "**/typeorm/**",
+      "**/@nestjs",
+      "**/@nestjs/**",
+      "**/react",
+      "**/react/**",
+      "**/react-dom",
+      "**/react-dom/**",
+      "**/react-redux",
+      "**/react-redux/**",
+      "**/react-router-dom",
+      "**/react-router-dom/**",
+      "**/@testing-library",
+      "**/@testing-library/**",
+      "**jest",
+      "**jest/**"
+    ]
+  }
 }

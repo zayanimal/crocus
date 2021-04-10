@@ -1,1 +1,1 @@
-export * from './CompanyRequisites';
+export * from "./CompanyRequisites";

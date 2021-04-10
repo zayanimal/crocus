@@ -1,4 +1,6 @@
 /**
  * Интерфейс для уведомлений об ошибках
  */
-export interface IMessage { message: string; }
+export interface IMessage {
+  message: string;
+}

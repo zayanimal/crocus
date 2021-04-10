@@ -1,73 +1,70 @@
-import { Requests } from '@customer/store/reducers/requestsList.reducer';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import { bem } from '@interaktiv/utils';
-import formatDistance from 'date-fns/formatDistance';
-import Ru from 'date-fns/locale/ru';
+import { Requests } from "@customer/store/reducers/requestsList.reducer";
+import Button from "@material-ui/core/Button";
+import Chip from "@material-ui/core/Chip";
+import { bem } from "@interaktiv/utils";
+import formatDistance from "date-fns/formatDistance";
+import Ru from "date-fns/locale/ru";
 // import MaterialTable from 'material-table';
-import React, { useMemo } from 'react';
-import './RequestListTable.scss';
+import React, { useMemo } from "react";
+import "./RequestListTable.scss";
 
-const cn = bem('RequestListTable');
+const cn = bem("RequestListTable");
 
-type Status = Pick<Requests, 'status'>;
-type CreationDate = Pick<Requests, 'creationDate'>;
+type Status = Pick<Requests, "status">;
+type CreationDate = Pick<Requests, "creationDate">;
 
 interface Props {
-    data: Requests[];
+  data: Requests[];
 }
 
-const stringDateReverse = (str: string) => str.split('.').reverse().join('.');
+const stringDateReverse = (str: string) => str.split(".").reverse().join(".");
 const waitingTime = (date: string) =>
-    formatDistance(new Date(), new Date(stringDateReverse(date)), {
-        locale: Ru
-    });
+  formatDistance(new Date(), new Date(stringDateReverse(date)), {
+    locale: Ru,
+  });
 
 const RequestListTable: React.FC<Props> = (props) => {
-    const { data } = props;
+  const { data } = props;
 
-    const columns = useMemo(
-        () => [
-            {
-                field: 'id',
-                title: 'ID'
-            },
-            {
-                field: 'creationDate',
-                title: 'Дата создания'
-            },
-            {
-                field: 'pending',
-                title: 'В ожидании',
-                render: ({ creationDate }: CreationDate) =>
-                    waitingTime(creationDate)
-            },
-            {
-                field: 'endUser',
-                title: 'Заказчик'
-            },
-            {
-                field: 'status',
-                title: 'Статус',
-                render: ({ status }: Status) => (
-                    <Chip color='primary' label={status} />
-                )
-            },
-            {
-                title: 'Действие',
-                render: () => (
-                    <Button variant='contained' color='secondary' size='small'>
-                        Перейти
-                    </Button>
-                )
-            }
-        ],
-        []
-    );
+  const columns = useMemo(
+    () => [
+      {
+        field: "id",
+        title: "ID",
+      },
+      {
+        field: "creationDate",
+        title: "Дата создания",
+      },
+      {
+        field: "pending",
+        title: "В ожидании",
+        render: ({ creationDate }: CreationDate) => waitingTime(creationDate),
+      },
+      {
+        field: "endUser",
+        title: "Заказчик",
+      },
+      {
+        field: "status",
+        title: "Статус",
+        render: ({ status }: Status) => <Chip color="primary" label={status} />,
+      },
+      {
+        title: "Действие",
+        render: () => (
+          <Button variant="contained" color="secondary" size="small">
+            Перейти
+          </Button>
+        ),
+      },
+    ],
+    []
+  );
 
-    return (
-        <div className={cn()}>
-            {/* <MaterialTable
+  return (
+    <div className={cn()}>
+      {/* <MaterialTable
                 columns={columns}
                 data={data}
                 options={{
@@ -85,8 +82,8 @@ const RequestListTable: React.FC<Props> = (props) => {
                     }
                 }}
             /> */}
-        </div>
-    );
+    </div>
+  );
 };
 
 export { RequestListTable };

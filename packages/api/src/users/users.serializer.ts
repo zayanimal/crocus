@@ -1,51 +1,53 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
-import { groupSerial } from '@shared/utils';
-import { Roles } from '@auth/entities/roles.entity';
-import { Permissions } from '@auth/entities/permissions.entity';
-import { ContactUser } from '@users/entities/contact-user.entity';
-import { Company } from '@company/entities/company.entity';
-import { IUsersEntity } from '@users/interfaces/users-entity.interface';
+import { Exclude, Expose, Transform } from "class-transformer";
+import { groupSerial } from "@shared/utils";
+import { Roles } from "@auth/entities/roles.entity";
+import { Permissions } from "@auth/entities/permissions.entity";
+import { ContactUser } from "@users/entities/contact-user.entity";
+import { Company } from "@company/entities/company.entity";
+import { IUsersEntity } from "@users/interfaces/users-entity.interface";
 
-export const LIST_GROUP = groupSerial('list');
-export const FIND_GROUP = groupSerial('find');
-export const EDIT_GROUP = groupSerial('edit');
+export const LIST_GROUP = groupSerial("list");
+export const FIND_GROUP = groupSerial("find");
+export const EDIT_GROUP = groupSerial("edit");
 
 export class UsersEntity implements IUsersEntity {
-    @Expose({ groups: ['find'] })
-    id!: string;
+  @Expose({ groups: ["find"] })
+  id!: string;
 
-    @Expose({ groups: ['list', 'find', 'edit'] })
-    username!: string;
+  @Expose({ groups: ["list", "find", "edit"] })
+  username!: string;
 
-    @Exclude()
-    password!: string;
+  @Exclude()
+  password!: string;
 
-    @Expose({ groups: ['list'] })
-    time!: string;
+  @Expose({ groups: ["list"] })
+  time!: string;
 
-    @Expose({ groups: ['list', 'find', 'edit'] })
-    isActive!: boolean;
+  @Expose({ groups: ["list", "find", "edit"] })
+  isActive!: boolean;
 
-    @Exclude()
-    roleId!: string;
+  @Exclude()
+  roleId!: string;
 
-    @Expose({ groups: ['list', 'find', 'edit'] })
-    @Transform(({ value }) => value.name)
-    role!: Roles;
+  @Expose({ groups: ["list", "find", "edit"] })
+  @Transform(({ value }) => value.name)
+  role!: Roles;
 
-    @Exclude()
-    contactsId!: string;
+  @Exclude()
+  contactsId!: string;
 
-    @Expose({ groups: ['edit'] })
-    contacts!: ContactUser;
+  @Expose({ groups: ["edit"] })
+  contacts!: ContactUser;
 
-    @Expose({ groups: ['find'] })
-    companyId!: string | null;
+  @Expose({ groups: ["find"] })
+  companyId!: string | null;
 
-    @Exclude()
-    company!: Company;
+  @Exclude()
+  company!: Company;
 
-    @Expose({ groups: ['find', 'edit'] })
-    @Transform(({ value }: { value: Permissions[] }) => value.map(({ name }) => name))
-    permissions!: Permissions[];
+  @Expose({ groups: ["find", "edit"] })
+  @Transform(({ value }: { value: Permissions[] }) =>
+    value.map(({ name }) => name)
+  )
+  permissions!: Permissions[];
 }

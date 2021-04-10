@@ -1,19 +1,20 @@
 # Архитектура проекта
 
 ## Модуль
+
 **Модуль** – архитектурный паттерн. Модуль содержит в себе контейнеры, компоненты и стор определённого раздела приложения. Содержимое модуля используется только в пределах данного модуля, дочерние элементы не должны использоваться за пределами модуля.
 
 ### Структура модуля
 
-+ module-name/
-    + /containers
-    + /components
-    + /store/
-        + /actions
-        + /reducers
-        + /selectors
-        + /sagas
-    + /constants
+- module-name/
+  - /containers
+  - /components
+  - /store/
+    - /actions
+    - /reducers
+    - /selectors
+    - /sagas
+  - /constants
 
 Содержимое директорий находится в разделах:
 
@@ -22,15 +23,18 @@
 - константы
 
 ## Контейнеры и компоненты
-**Контейнер** – паттерн проектирования  React компонентов. Смысл в том, что только контейнер подключается к redux store, все его дочерние элементы (обычные компоненты) получают данные через свои пропсы.
+
+**Контейнер** – паттерн проектирования React компонентов. Смысл в том, что только контейнер подключается к redux store, все его дочерние элементы (обычные компоненты) получают данные через свои пропсы.
 
 ### Структура контейнера
-+ ContainerName/
-    + index.js
-    + ContainerName.jsx
-    + ContainerName.scss
+
+- ContainerName/
+  - index.js
+  - ContainerName.jsx
+  - ContainerName.scss
 
 ### Стиль кода
+
 index.js:
 
 ```JSX
@@ -81,15 +85,15 @@ ContainerName.scss:
 ```
 
 ## Компоненты
+
 **Компонент** – дочерний элемент контейнера. Получает данные только от своего родителя через props или context provider.
 
 ### Структура компонента
 
-+ ComponentName/
-    + index.js
-    + ComponentName.jsx
-    + ComponentName.scss
-
+- ComponentName/
+  - index.js
+  - ComponentName.jsx
+  - ComponentName.scss
 
 ### Стиль кода
 
@@ -130,15 +134,16 @@ ComponentName.scss:
 ```
 
 ## Стор
+
 **Стор** - хранилище данных Redux. Используется исключительно внутри модулей (см. раздел модуль) и хранит в себе текущий State сущности.
 
 ### Структура стора
 
-+ store/
-    + /actions
-    + /reducers
-    + /selectors
-    + /sagas
+- store/
+  - /actions
+  - /reducers
+  - /selectors
+  - /sagas
 
 ### Actions
 

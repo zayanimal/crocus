@@ -1,16 +1,16 @@
-import { schema, Schema } from 'normalizr';
+import { schema, Schema } from "normalizr";
 
-export type SchemaFabricKeys = 'requisites';
+export type SchemaFabricKeys = "requisites";
 
 export const schemaFabric = new Map<string, Schema>([
-    [
-        'requisites',
-        {
-            requisites: [
-                new schema.Entity('requisites', {
-                    bank: [new schema.Entity('bank')]
-                })
-            ]
-        }
-    ]
+  [
+    "requisites",
+    {
+      requisites: [
+        new schema.Entity("requisites", {
+          bank: [new schema.Entity("bank")],
+        }),
+      ],
+    },
+  ],
 ]);

@@ -1,1 +1,1 @@
-export * from './TableRowButton';
+export * from "./TableRowButton";
