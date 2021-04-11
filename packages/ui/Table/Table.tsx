@@ -1,13 +1,23 @@
 import React from 'react'
 import { AutoSizer, Column, Table as TableVirtualized } from 'react-virtualized'
 import { bem } from '@interaktiv/utils'
+import { TableSkeleton } from '../TableSkeleton'
+import { useTableFill } from '../hooks'
 import type { TableType } from './Table.interface'
 import './Table.scss'
 
 const cn = bem('Table')
 
 const Table: TableType = (props) => {
-    const { columns = [], list = [] } = props
+    const { list = [], columns = [] } = props
+
+    const [mockColumns, mockList] = TableSkeleton(columns)
+    const [preparedList, preparedColumns] = useTableFill({
+        list,
+        columns,
+        mockList,
+        mockColumns
+    })
 
     return (
         <AutoSizer>
@@ -19,9 +29,9 @@ const Table: TableType = (props) => {
                     headerHeight={60}
                     rowClassName={cn('row')}
                     rowHeight={60}
-                    rowCount={list.length}
-                    rowGetter={({ index }) => list[index]}>
-                    {columns.map((col) => (
+                    rowCount={preparedList.length}
+                    rowGetter={({ index }) => preparedList[index]}>
+                    {preparedColumns.map((col) => (
                         <Column
                             key={col.dataKey}
                             label={col.label}

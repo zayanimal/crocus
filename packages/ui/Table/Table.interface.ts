@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import type { ColumnProps } from 'react-virtualized'
 
 interface TableProps {
-    list: object[]
+    list: Record<string, unknown>[]
     columns: ColumnProps[]
 }
 

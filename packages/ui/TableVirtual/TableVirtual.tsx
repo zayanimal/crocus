@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback } from 'react'
 import type { ColumnProps } from 'react-virtualized'
 import Table, { Column } from 'react-virtualized/dist/es/Table'
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer'
@@ -6,17 +6,20 @@ import InfiniteLoader from 'react-virtualized/dist/es/InfiniteLoader'
 import { bem } from '@interaktiv/utils'
 import { IPaginationMeta } from '@interaktiv/client/src/modules/shared/interfaces/pagination.interface'
 import { TableSkeleton } from '../TableSkeleton'
+import { useTableFill } from '../hooks'
 import 'react-virtualized/styles.css'
 import './TableVirtual.scss'
 
 const cn = bem('TableVirtual')
 
 interface Props {
-    list: object[]
+    list: Record<string, unknown>[]
     getList: (limit: number) => void
     columns: ColumnProps[]
     meta: Pick<IPaginationMeta, 'currentPage' | 'totalItems' | 'totalPages'>
 }
+
+const PAGE_COUNT = 1
 
 const TableVirtual: React.FC<Props> = (props) => {
     const {
@@ -26,25 +29,17 @@ const TableVirtual: React.FC<Props> = (props) => {
         meta: { currentPage, totalItems, totalPages }
     } = props
 
-    const [mockCols, mockList] = useMemo(() => TableSkeleton(columns), [
-        columns
-    ])
-    const [filledList, setFilledList] = useState([{}])
-    const [cols, setCols] = useState<ColumnProps[]>([])
-
-    useEffect(() => {
-        setFilledList(mockList)
-        setCols(mockCols)
-
-        if (list.length) {
-            setFilledList(list)
-            setCols(columns)
-        }
-    }, [list, columns, mockList, mockCols])
+    const [mockColumns, mockList] = TableSkeleton(columns)
+    const [preparedList, preparedColumns] = useTableFill({
+        list,
+        columns,
+        mockList,
+        mockColumns
+    })
 
     const loadMoreRows = useCallback(() => {
         if (currentPage <= totalPages) {
-            getList(currentPage + 1)
+            getList(currentPage + PAGE_COUNT)
         }
 
         return Promise.resolve()
@@ -53,7 +48,7 @@ const TableVirtual: React.FC<Props> = (props) => {
     return (
         <div style={{ height: 'calc(100vh - 8.1992em)' }}>
             <InfiniteLoader
-                isRowLoaded={({ index }) => !!filledList[index]}
+                isRowLoaded={({ index }) => !!preparedList[index]}
                 loadMoreRows={loadMoreRows}
                 rowCount={totalItems}>
                 {({ onRowsRendered, registerChild }) => (
@@ -68,9 +63,9 @@ const TableVirtual: React.FC<Props> = (props) => {
                                 headerHeight={60}
                                 rowClassName={cn('row')}
                                 rowHeight={60}
-                                rowCount={filledList.length}
-                                rowGetter={({ index }) => filledList[index]}>
-                                {cols.map((col) => (
+                                rowCount={preparedList.length}
+                                rowGetter={({ index }) => preparedList[index]}>
+                                {preparedColumns.map((col) => (
                                     <Column
                                         key={col.dataKey}
                                         label={col.label}
