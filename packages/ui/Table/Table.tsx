@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { AutoSizer, Column, Table as TableVirtualized } from 'react-virtualized'
-import { bem } from '@interaktiv/utils'
+import { bem, classes } from '@interaktiv/utils'
 import { TableSkeleton } from '../TableSkeleton'
-import { useTableFill } from '../hooks'
-import type { TableType } from './Table.interface'
+import { useTableFill } from './Table.hook'
+import type { TableProps } from './Table.interface'
 import './Table.scss'
 
 const cn = bem('Table')
 
-const Table: TableType = (props) => {
-    const { list = [], columns = [] } = props
+const Table = forwardRef<TableVirtualized, TableProps>((props, ref) => {
+    const { list = [], columns = [], className } = props
 
     const [mockColumns, mockList] = TableSkeleton(columns)
     const [preparedList, preparedColumns] = useTableFill({
@@ -23,7 +23,8 @@ const Table: TableType = (props) => {
         <AutoSizer>
             {({ width, height }) => (
                 <TableVirtualized
-                    className={cn()}
+                    className={classes(cn(), className)}
+                    ref={ref}
                     width={width}
                     height={height}
                     headerHeight={60}
@@ -44,6 +45,6 @@ const Table: TableType = (props) => {
             )}
         </AutoSizer>
     )
-}
+})
 
 export { Table }

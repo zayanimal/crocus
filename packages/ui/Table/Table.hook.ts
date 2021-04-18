@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ColumnProps } from 'react-virtualized'
-
-type List = Record<string, unknown>[]
-
-interface TableFill {
-    list: List
-    columns: ColumnProps[]
-    mockList: List
-    mockColumns: ColumnProps[]
-}
+import type { List, TableFill } from './Table.interface'
 
 export function useTableFill(data: TableFill): [List, ColumnProps[]] {
     const { list, columns, mockList, mockColumns } = data

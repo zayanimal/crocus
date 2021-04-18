@@ -1,7 +1,7 @@
-import { RootStateTypes } from "@config/roots";
+import { RootStateTypes } from '@config/roots'
 
-const ordersState = (state: RootStateTypes) => state.admin.orders;
+const ordersState = (state: RootStateTypes) => state.admin.orders
 
-export const list = (state: RootStateTypes) => ordersState(state).list;
+export const list = (state: RootStateTypes) => ordersState(state).list
 
-export const meta = (state: RootStateTypes) => ordersState(state).meta;
+export const meta = (state: RootStateTypes) => ordersState(state).meta

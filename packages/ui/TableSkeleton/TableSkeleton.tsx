@@ -29,5 +29,6 @@ export const TableSkeleton = (
 
     const row = columns.reduce((acc, item) => set(acc, item.dataKey, ''), {})
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     return useMemo(() => [cols, range(ROW_COUNT).map(() => row)], [columns])
 }

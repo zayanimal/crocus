@@ -1,9 +1,17 @@
-import type { FC } from 'react'
-import type { ColumnProps } from 'react-virtualized'
+import type { ColumnProps, IndexRange } from 'react-virtualized'
 
-interface TableProps {
-    list: Record<string, unknown>[]
+export type List = Record<string, unknown>[]
+
+export interface TableFill {
+    list: List
     columns: ColumnProps[]
+    mockList: List
+    mockColumns: ColumnProps[]
 }
 
-export type TableType = FC<TableProps>
+export interface TableProps {
+    list: Record<string, unknown>[]
+    columns: ColumnProps[]
+    onRowsRendered?: (params: IndexRange) => void
+    className?: string
+}

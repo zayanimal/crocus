@@ -94,7 +94,9 @@ const OrderControl: React.FC<Props> = (props) => {
                 />
             </div>
             <div className={grid('col-9')}>
-                <Table columns={columns} list={[]} />
+                <div style={{ height: 'calc(100vh - 12em)' }}>
+                    <Table columns={columns} list={[]} />
+                </div>
                 <div className={cn('controls')}>
                     <Button
                         variant="outlined"
