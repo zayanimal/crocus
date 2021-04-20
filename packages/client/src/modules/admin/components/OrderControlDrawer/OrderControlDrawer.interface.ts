@@ -1,7 +1,8 @@
-import type { FC } from "react";
+import type { FC } from 'react'
 
 interface OrderControlDrawerProps {
-  hello: string;
+    open?: boolean
+    onSetOpen: (state: boolean) => void
 }
 
-export type OrderControlDrawerType = FC<OrderControlDrawerProps>;
+export type OrderControlDrawerType = FC<OrderControlDrawerProps>

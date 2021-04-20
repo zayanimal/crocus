@@ -7,7 +7,6 @@ import { systemEpic } from '@system/effects'
 import { adminEpic } from '@admin/effects'
 import { customerEpic } from '@customer/store/epics'
 
-// TODO: решить проблемы типизации
 export const rootReducer = combineReducers({
     system: mainReducer,
     admin: adminReducer,

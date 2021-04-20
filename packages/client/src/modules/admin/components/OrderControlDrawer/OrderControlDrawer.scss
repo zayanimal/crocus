@@ -4,13 +4,10 @@
   overflow-y: auto;
 
   &__row {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    padding-bottom: 2em;
 
-    &:last-child {
-      padding-bottom: 3.875em;
+    & + & {
+      padding-top: 2em;
     }
   }
 }

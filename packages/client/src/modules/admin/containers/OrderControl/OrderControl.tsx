@@ -19,7 +19,8 @@ const mapStateToProps = (state: RootStateTypes) => ({
     modelsDataInOrder: orderControlSelectors.modelsDataInOrder(state),
     modelsSelected: orderControlSelectors.modelsSelected(state),
     listState: orderControlSelectors.listState(state),
-    validation: orderControlSelectors.validation(state)
+    validation: orderControlSelectors.validation(state),
+    drawerOpen: orderControlSelectors.drawerOpen(state)
 })
 
 const mapDispatchToProps = {
@@ -31,7 +32,8 @@ const mapDispatchToProps = {
     putModelInOrder: orderControlActions.putModelInOrder,
     deleteModelInOrder: orderControlActions.deleteModelInOrder,
     updateModelInOrder: orderControlActions.updateModelInOrder,
-    showList: orderControlActions.showList
+    showList: orderControlActions.showList,
+    setDrawerOpen: orderControlActions.setDrawerOpen
 }
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
@@ -50,7 +52,9 @@ const OrderControl: React.FC<Props> = (props) => {
         listState,
         showList,
         sendNewProject,
-        validation
+        validation,
+        drawerOpen,
+        setDrawerOpen
     } = props
 
     useEffect(() => {
@@ -74,13 +78,16 @@ const OrderControl: React.FC<Props> = (props) => {
         })
     }
 
+    const onDrawerOpen = () => setDrawerOpen(true)
+
     return (
         <div className={grid('row')}>
             <div className={grid('col-3')}>
                 <Button
                     color="secondary"
                     variant="outlined"
-                    style={{ width: '100%' }}>
+                    style={{ width: '100%' }}
+                    onClick={onDrawerOpen}>
                     Заказчик
                 </Button>
                 <GoodsList
@@ -107,7 +114,7 @@ const OrderControl: React.FC<Props> = (props) => {
                     </Button>
                 </div>
             </div>
-            <OrderControlDrawer hello="hello" />
+            <OrderControlDrawer open={drawerOpen} onSetOpen={setDrawerOpen} />
         </div>
     )
 }

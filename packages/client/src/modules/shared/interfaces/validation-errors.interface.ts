@@ -1,3 +1,3 @@
 export interface ValidationErrors {
-  [k: string]: string;
+    [k: string]: string
 }

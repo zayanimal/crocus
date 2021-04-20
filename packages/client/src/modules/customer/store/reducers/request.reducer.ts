@@ -11,7 +11,7 @@ export interface IPriceTypesCount extends IPriceTypes {
     count: number
 }
 
-interface InitialState {
+interface RequestInitialState {
     rate: number
     modelInput: string
     modelsData: IPriceTypes[]
@@ -29,7 +29,7 @@ const initialState = {
     showList: false
 }
 
-const request = createReducer<InitialState>(initialState, {
+export const request = createReducer<RequestInitialState>(initialState, {
     [getType(requestActions.fetchPriceList.success)]: (state, { payload }) => ({
         ...state,
         rate: payload.rate.Valute.USD.Value,
@@ -80,5 +80,3 @@ const request = createReducer<InitialState>(initialState, {
         showList: payload
     })
 })
-
-export { request }
