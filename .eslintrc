@@ -51,7 +51,7 @@
       "error",
       {
         "tabWidth": 4,
-        "printWidth": 80,
+        "printWidth": 85,
         "singleQuote": true,
         "semi": false,
         "trailingComma": "none",

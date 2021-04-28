@@ -1,7 +1,7 @@
 import { requestDrawerActions } from '@customer/store/actions'
 import { requestDrawerSelectors } from '@customer/store/selectors'
 import TextField from '@material-ui/core/TextField'
-// import { KeyboardDatePicker } from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@material-ui/pickers'
 import { DrawerForm } from '@interaktiv/ui/DrawerForm'
 import { RootStateTypes } from '@config/roots'
 import { bem, validation } from '@interaktiv/utils'
@@ -51,8 +51,8 @@ const RequestDrawer: React.FC<Props> = (props) => {
         cityError,
         setCityError,
 
-        // date,
-        // setDate,
+        date,
+        setDate,
 
         comment,
         setComment,
@@ -63,9 +63,7 @@ const RequestDrawer: React.FC<Props> = (props) => {
     } = props
 
     const [custHelpText, setCustHelpText] = useState('Обязательное поле')
-    const [cityHelpText, setCityHelpText] = useState(
-        'Местонахождение заказчика'
-    )
+    const [cityHelpText, setCityHelpText] = useState('Местонахождение заказчика')
     const [commentHelpText, setCommentHelpText] = useState(
         'Прочие сведения о заказчике, пожелания'
     )
@@ -112,13 +110,13 @@ const RequestDrawer: React.FC<Props> = (props) => {
         }
     }
 
-    // const dateHandler = (value: Date | null) => {
-    //     if (value !== null) {
-    //         setDate(value);
-    //     } else {
-    //         setDate(new Date());
-    //     }
-    // };
+    const dateHandler = (value: Date | null) => {
+        if (value !== null) {
+            setDate(value)
+        } else {
+            setDate(new Date())
+        }
+    }
 
     const commentHandler = (e: ChangeEvent) => {
         const target = e.target as HTMLInputElement
@@ -166,7 +164,7 @@ const RequestDrawer: React.FC<Props> = (props) => {
                         helperText={cityHelpText}
                     />
                 </div>
-                {/* <div className={cn('row')}>
+                <div className={cn('row')}>
                     <KeyboardDatePicker
                         disableToolbar
                         onChange={dateHandler}
@@ -178,7 +176,7 @@ const RequestDrawer: React.FC<Props> = (props) => {
                         minDate={new Date()}
                         helperText="Срок поставки"
                     />
-                </div> */}
+                </div>
                 <div className={cn('row')}>
                     <TextField
                         label="Дополнительная информация"

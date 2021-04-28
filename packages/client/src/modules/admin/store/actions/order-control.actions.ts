@@ -41,13 +41,13 @@ export const putModelInOrder = createAction('[CUSTOMER] PUT_MODEL_IN_ORDER')<
     IPriceTypesCount | undefined
 >()
 
-export const deleteModelInOrder = createAction(
-    '[CUSTOMER] DELETE_MODEL_IN_ORDER'
-)<IPriceTypesCount[]>()
+export const deleteModelInOrder = createAction('[CUSTOMER] DELETE_MODEL_IN_ORDER')<
+    IPriceTypesCount[]
+>()
 
-export const updateModelInOrder = createAction(
-    '[CUSTOMER] UPDATE_MODEL_IN_ORDER'
-)<IPriceTypesCount[]>()
+export const updateModelInOrder = createAction('[CUSTOMER] UPDATE_MODEL_IN_ORDER')<
+    IPriceTypesCount[]
+>()
 
 export const clearOrder = createAction('[CUSTOMER] CLEAR_ORDER')()
 

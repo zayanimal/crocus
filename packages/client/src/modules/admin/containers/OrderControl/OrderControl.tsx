@@ -6,8 +6,8 @@ import { GoodsList } from '@shared/components/GoodsList'
 import { OrderControlDrawer } from '@admin/components/OrderControlDrawer'
 import { orderControlSelectors } from '@admin/store/selectors'
 import { orderControlActions } from '@admin/store/actions'
-import type { RootStateTypes } from '@config/roots'
 import { bem } from '@interaktiv/utils'
+import type { RootStateTypes } from '@config/roots'
 import { columns } from './OrderControl.columns'
 
 const cn = bem('OrderControl')

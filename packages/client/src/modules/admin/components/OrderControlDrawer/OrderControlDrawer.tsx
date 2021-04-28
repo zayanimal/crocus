@@ -1,7 +1,7 @@
 import React from 'react'
 import { DrawerForm, Fields } from '@interaktiv/ui'
 import { bem } from '@interaktiv/utils'
-import type { OrderControlDrawerType } from './OrderControlDrawer.interface'
+import type { OrderControlDrawerType } from './OrderControlDrawer.types'
 import './OrderControlDrawer.scss'
 
 const cn = bem('OrderControlDrawer')
@@ -35,59 +35,7 @@ const OrderControlDrawer: OrderControlDrawerType = (props) => {
             toggle={open}
             onClose={closeDrawer}>
             <div className={cn()}>
-                <Fields
-                    fields={orderDrawerFields}
-                    entity={{}}
-                    handler={() => {}}
-                />
-
-                {/* <div className={cn('row')}>
-                    <TextField
-                        label="Название заказчика"
-                        onChange={() => {}}
-                        value=""
-                        error={false}
-                        size="small"
-                        fullWidth
-                        multiline
-                        helperText=""
-                    />
-                </div>
-                <div className={cn('row')}>
-                    <TextField
-                        label="Город"
-                        onChange={() => {}}
-                        value=""
-                        error={false}
-                        size="small"
-                        helperText=""
-                    />
-                </div>
-                <div className={cn('row')}>
-                    <KeyboardDatePicker
-                        disableToolbar
-                        onChange={() => {}}
-                        value=""
-                        variant="inline"
-                        format="dd/MM/yyyy"
-                        margin="normal"
-                        id="date-picker-inline"
-                        minDate={new Date()}
-                        helperText="Срок поставки"
-                    />
-                </div>
-                <div className={cn('row')}>
-                    <TextField
-                        label="Дополнительная информация"
-                        onChange={() => {}}
-                        value=""
-                        error={false}
-                        size="small"
-                        fullWidth
-                        multiline
-                        helperText=""
-                    />
-                </div> */}
+                <Fields fields={orderDrawerFields} entity={{}} handler={() => {}} />
             </div>
         </DrawerForm>
     )

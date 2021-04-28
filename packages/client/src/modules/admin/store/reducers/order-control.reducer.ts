@@ -34,10 +34,7 @@ const initialState = {
 }
 
 const orderControl = createReducer<InitialState>(initialState, {
-    [getType(orderControlActions.fetchPriceList.success)]: (
-        state,
-        { payload }
-    ) => ({
+    [getType(orderControlActions.fetchPriceList.success)]: (state, { payload }) => ({
         ...state,
         rate: payload.rate.Valute.USD.Value,
         modelsData: payload.price
@@ -49,10 +46,7 @@ const orderControl = createReducer<InitialState>(initialState, {
         modelsSelected: []
     }),
 
-    [getType(orderControlActions.setModelInputValue)]: (
-        state,
-        { payload }
-    ) => ({
+    [getType(orderControlActions.setModelInputValue)]: (state, { payload }) => ({
         ...state,
         modelInput: payload
     }),
@@ -67,18 +61,12 @@ const orderControl = createReducer<InitialState>(initialState, {
         modelsDataInOrder: [...state.modelsDataInOrder, payload]
     }),
 
-    [getType(orderControlActions.deleteModelInOrder)]: (
-        state,
-        { payload }
-    ) => ({
+    [getType(orderControlActions.deleteModelInOrder)]: (state, { payload }) => ({
         ...state,
         modelsDataInOrder: payload
     }),
 
-    [getType(orderControlActions.updateModelInOrder)]: (
-        state,
-        { payload }
-    ) => ({
+    [getType(orderControlActions.updateModelInOrder)]: (state, { payload }) => ({
         ...state,
         modelsDataInOrder: payload
     }),
