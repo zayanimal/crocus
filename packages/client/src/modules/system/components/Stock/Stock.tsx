@@ -4,10 +4,7 @@ import Button from '@material-ui/core/Button'
 
 const Stock: React.FC = () => (
     <>
-        <p>
-            В этом разделе вы можете закачать Excel файл с моделями и их
-            наличием
-        </p>
+        <p>В этом разделе вы можете закачать Excel файл с моделями и их наличием</p>
         <br />
         <a href="/">Образец файла</a>
         <br />

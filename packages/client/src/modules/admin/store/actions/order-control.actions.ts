@@ -22,8 +22,8 @@ export const fetchPriceList = createAsyncAction(
     '[CUSTOMER] FETCH_PRICE_FAILURE'
 )<undefined, IPriceRateTypes, string>()
 
-export const setModelInputValue = createAction(
-    '[CUSTOMER] SET_MODEL_INPUT_VALUE'
+export const setGoodsInputValue = createAction(
+    '[CUSTOMER] SET_GOODS_INPUT_VALUE'
 )<string>()
 
 export const sendNewProject = createAction('[CUSTOMER] SEND_NEW_PROJECT_DATA')()
@@ -31,13 +31,13 @@ export const completeData = createAction('[CUSTOMER] COMPLETE')()
 
 export const filterModels = createAction('[CUSTOMER] FILTER_MODELS')<string>()
 
-export const setSelectedModels = createAction('[CUSTOMER] SET_SELECTED_MODELS')<
+export const setSelectedGoods = createAction('[CUSTOMER] SET_SELECTED_GOODS')<
     IPriceTypes[]
 >()
 
 export const cleanPriceList = createAction('[CUSTOMER] CLEAN_PRICE_LIST')()
 
-export const putModelInOrder = createAction('[CUSTOMER] PUT_MODEL_IN_ORDER')<
+export const putGoodInOrder = createAction('[CUSTOMER] PUT_GOOD_IN_ORDER')<
     IPriceTypesCount | undefined
 >()
 
@@ -51,7 +51,7 @@ export const updateModelInOrder = createAction('[CUSTOMER] UPDATE_MODEL_IN_ORDER
 
 export const clearOrder = createAction('[CUSTOMER] CLEAR_ORDER')()
 
-export const showList = createAction('[CUSTOMER] REQUEST_SHOW_LIST')<boolean>()
+export const showGoodsList = createAction('[CUSTOMER] SHOW_GOODS_LIST')<boolean>()
 
 export const setValidation = createAction('[ADMIN] SET_VALIDATION')<boolean>()
 

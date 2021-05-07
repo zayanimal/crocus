@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, Switch, useLocation, useRouteMatch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RootStateTypes } from '@config/roots'
 import { systemActions } from '@system/store/actions'
@@ -23,7 +23,6 @@ export type OrdersProps = ReturnType<typeof mapStateToProps> &
 
 const Orders: React.FC<OrdersProps> = (props) => {
     const { setHeaderTitle, getOrdersList } = props
-    const { pathname } = useLocation()
     const { path } = useRouteMatch()
 
     useEffect(() => {

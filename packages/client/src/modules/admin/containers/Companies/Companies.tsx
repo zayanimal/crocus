@@ -45,18 +45,11 @@ const Companies: React.FC<CompaniesProps> = (props) => {
         <Switch>
             <Route path={`${path}/add`} component={CompanyControl} />
             <Route path={`${path}/edit/:id`} component={CompanyControl} />
-            <Route
-                exact
-                path={path}
-                render={() => <CompaniesList {...props} />}
-            />
+            <Route exact path={path} render={() => <CompaniesList {...props} />} />
         </Switch>
     )
 }
 
-const CompaniesConnected = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Companies)
+const CompaniesConnected = connect(mapStateToProps, mapDispatchToProps)(Companies)
 
 export { CompaniesConnected as Companies }

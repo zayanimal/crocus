@@ -2,10 +2,7 @@ import { RequestPartnumbers } from '@customer/components/RequestPartnumbers'
 import { RequestTable } from '@customer/components/RequestTable'
 import { RequestDrawer } from '@customer/containers/RequestDrawer'
 import { requestActions, requestDrawerActions } from '@customer/store/actions'
-import {
-    requestDrawerSelectors,
-    requestSelectors
-} from '@customer/store/selectors'
+import { requestDrawerSelectors, requestSelectors } from '@customer/store/selectors'
 import Button from '@material-ui/core/Button'
 import { systemActions } from '@system/store/actions'
 import { RootStateTypes } from '@config/roots'
@@ -87,9 +84,7 @@ const Request: React.FC<Props> = (props) => {
     }
 
     const deleteHandler = (value: string) => {
-        deleteModelInOrder(
-            modelsDataInOrder.filter(({ model }) => model !== value)
-        )
+        deleteModelInOrder(modelsDataInOrder.filter(({ model }) => model !== value))
     }
 
     return (

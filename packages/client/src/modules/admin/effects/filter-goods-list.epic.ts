@@ -20,15 +20,14 @@ export const filterGoodsList: Epic = (action$, state$) =>
         switchMap(({ payload }) =>
             state$.pipe(
                 first(),
-                map(orderControlSelectors.modelsData),
-                map((models) =>
-                    models.filter(
+                map(orderControlSelectors.goods),
+                map((goods) =>
+                    goods.filter(
                         ({ model }) =>
-                            model.includes(payload.toUpperCase()) &&
-                            payload !== ''
+                            model.includes(payload.toUpperCase()) && payload !== ''
                     )
                 ),
-                map(orderControlActions.setSelectedModels)
+                map(orderControlActions.setSelectedGoods)
             )
         ),
         catchError((mes: string) => of(systemActions.errorNotification(mes)))

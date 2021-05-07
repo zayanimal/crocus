@@ -14,10 +14,7 @@ import {
     companyControlActions,
     searchUserActions
 } from '@admin/store/actions'
-import {
-    companyControlSelectors,
-    companySelectors
-} from '@admin/store/selectors'
+import { companyControlSelectors, companySelectors } from '@admin/store/selectors'
 import { bem } from '@interaktiv/utils'
 
 const grid = bem('FlexGrid')
@@ -97,14 +94,7 @@ const CompanyControl: React.FC<CompanyControlProps> = (props) => {
             setHeaderTitle('Добавление компании')
             setCompanyEditMode(false)
         }
-    }, [
-        getCompany,
-        params.id,
-        path,
-        setCompanyEditMode,
-        setFetched,
-        setHeaderTitle
-    ])
+    }, [getCompany, params.id, path, setCompanyEditMode, setFetched, setHeaderTitle])
 
     return isFetched && !loading ? (
         <>

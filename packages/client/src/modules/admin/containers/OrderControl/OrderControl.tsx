@@ -14,25 +14,24 @@ const cn = bem('OrderControl')
 const grid = bem('FlexGrid')
 
 const mapStateToProps = (state: RootStateTypes) => ({
-    modelInputValue: orderControlSelectors.modelInputValue(state),
-    modelsData: orderControlSelectors.modelsData(state),
-    modelsDataInOrder: orderControlSelectors.modelsDataInOrder(state),
-    modelsSelected: orderControlSelectors.modelsSelected(state),
-    listState: orderControlSelectors.listState(state),
-    validation: orderControlSelectors.validation(state),
+    goodsInputValue: orderControlSelectors.goodsInputValue(state),
+    goods: orderControlSelectors.goods(state),
+    goodsInOrder: orderControlSelectors.goodsInOrder(state),
+    goodsSelected: orderControlSelectors.goodsSelected(state),
+    goodsListOpen: orderControlSelectors.goodsListOpen(state),
     drawerOpen: orderControlSelectors.drawerOpen(state)
 })
 
 const mapDispatchToProps = {
     fetchPrice: orderControlActions.fetchPriceList.request,
     sendNewProject: orderControlActions.sendNewProject,
-    setModelInputValue: orderControlActions.setModelInputValue,
+    setGoodsInputValue: orderControlActions.setGoodsInputValue,
     filterModels: orderControlActions.filterModels,
     cleanPrice: orderControlActions.cleanPriceList,
-    putModelInOrder: orderControlActions.putModelInOrder,
+    putGoodInOrder: orderControlActions.putGoodInOrder,
     deleteModelInOrder: orderControlActions.deleteModelInOrder,
     updateModelInOrder: orderControlActions.updateModelInOrder,
-    showList: orderControlActions.showList,
+    showGoodsList: orderControlActions.showGoodsList,
     setDrawerOpen: orderControlActions.setDrawerOpen
 }
 
@@ -41,18 +40,17 @@ type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 const OrderControl: React.FC<Props> = (props) => {
     const {
         fetchPrice,
-        modelsSelected,
-        modelInputValue,
-        setModelInputValue,
+        goodsSelected,
+        goodsInputValue,
+        setGoodsInputValue,
         filterModels,
         cleanPrice,
-        modelsData,
-        modelsDataInOrder,
-        putModelInOrder,
-        listState,
-        showList,
+        goods,
+        goodsInOrder,
+        putGoodInOrder,
+        goodsListOpen,
+        showGoodsList,
         sendNewProject,
-        validation,
         drawerOpen,
         setDrawerOpen
     } = props
@@ -66,13 +64,13 @@ const OrderControl: React.FC<Props> = (props) => {
     }, [fetchPrice, cleanPrice])
 
     const orderHandler = (value: string | null): void => {
-        if (modelsDataInOrder.some(({ model }) => model === value)) return
+        if (goodsInOrder.some(({ model }) => model === value)) return
 
-        putModelInOrder({
+        putGoodInOrder({
             // eslint-disable-next-line prefer-object-spread
             ...Object.assign(
                 {},
-                modelsData.find(({ model }) => model === value)
+                goods.find(({ model }) => model === value)
             ),
             count: 1
         })
@@ -91,13 +89,13 @@ const OrderControl: React.FC<Props> = (props) => {
                     Заказчик
                 </Button>
                 <GoodsList
-                    value={modelInputValue}
-                    setValue={setModelInputValue}
-                    selected={modelsSelected}
+                    value={goodsInputValue}
+                    setValue={setGoodsInputValue}
+                    selected={goodsSelected}
                     filterModels={filterModels}
                     onPick={orderHandler}
-                    listState={listState}
-                    onShowList={showList}
+                    listState={goodsListOpen}
+                    onShowList={showGoodsList}
                 />
             </div>
             <div className={grid('col-9')}>
@@ -108,7 +106,6 @@ const OrderControl: React.FC<Props> = (props) => {
                     <Button
                         variant="outlined"
                         color="primary"
-                        disabled={!validation}
                         onClick={sendNewProject}>
                         Отправить запрос
                     </Button>

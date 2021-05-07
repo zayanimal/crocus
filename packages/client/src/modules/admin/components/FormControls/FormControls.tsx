@@ -29,10 +29,7 @@ const FormControls: React.FC<Props> = (props) => {
             <Button variant="text" color="primary" onClick={onCancel}>
                 Назад
             </Button>
-            <Button
-                variant="text"
-                color="primary"
-                onClick={mode ? onEdit : onAdd}>
+            <Button variant="text" color="primary" onClick={mode ? onEdit : onAdd}>
                 {mode ? 'Сохранить' : 'Добавить'}
             </Button>
         </div>

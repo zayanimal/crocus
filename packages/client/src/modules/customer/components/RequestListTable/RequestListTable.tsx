@@ -39,8 +39,7 @@ const RequestListTable: React.FC<Props> = (props) => {
             {
                 field: 'pending',
                 title: 'В ожидании',
-                render: ({ creationDate }: CreationDate) =>
-                    waitingTime(creationDate)
+                render: ({ creationDate }: CreationDate) => waitingTime(creationDate)
             },
             {
                 field: 'endUser',

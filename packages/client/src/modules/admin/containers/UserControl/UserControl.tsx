@@ -111,9 +111,7 @@ const UserControl: React.FC<UserControlProps> = (props) => {
                     <div className={cn('status')}>
                         <Checkbox
                             checked={isActive}
-                            onChange={({ target }) =>
-                                setIsActive(target.checked)
-                            }
+                            onChange={({ target }) => setIsActive(target.checked)}
                             color="primary"
                         />
                         <InputLabel>Статус пользователя</InputLabel>

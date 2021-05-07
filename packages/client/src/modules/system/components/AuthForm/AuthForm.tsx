@@ -51,10 +51,7 @@ const AuthForm: React.FC<AuthProps> = (props) => {
                     variant="outlined"
                     type="password"
                 />
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={getCredentials}>
+                <Button variant="outlined" color="primary" onClick={getCredentials}>
                     Войти
                 </Button>
             </form>

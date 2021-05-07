@@ -1,35 +1,26 @@
 import { createReducer, getType } from 'typesafe-actions'
+import type { Good, GoodInOrder } from '@admin/interfaces'
 import { orderControlActions } from '../actions'
-
-export interface IPriceTypes {
-    id: number
-    model: string
-    price: number
-}
-
-export interface IPriceTypesCount extends IPriceTypes {
-    count: number
-}
 
 export interface InitialState {
     rate: number
-    modelInput: string
-    modelsData: IPriceTypes[]
-    modelsDataInOrder: IPriceTypesCount[]
-    modelsSelected: IPriceTypes[]
-    showList: boolean
-    validation: boolean
+    goodsInput: string
+    goods: Good[]
+    goodsInOrder: GoodInOrder[]
+    goodsSelected: Good[]
+
+    goodsListOpen: boolean
     drawerOpen: boolean
 }
 
 const initialState = {
     rate: 0,
-    modelInput: '',
-    modelsData: [],
-    modelsDataInOrder: [],
-    modelsSelected: [],
-    showList: false,
-    validation: false,
+    goodsInput: '',
+    goods: [],
+    goodsInOrder: [],
+    goodsSelected: [],
+
+    goodsListOpen: false,
     drawerOpen: false
 }
 
@@ -37,56 +28,50 @@ const orderControl = createReducer<InitialState>(initialState, {
     [getType(orderControlActions.fetchPriceList.success)]: (state, { payload }) => ({
         ...state,
         rate: payload.rate.Valute.USD.Value,
-        modelsData: payload.price
+        goods: payload.price
     }),
 
     [getType(orderControlActions.cleanPriceList)]: (state) => ({
         ...state,
-        modelsData: [],
-        modelsSelected: []
+        goods: [],
+        goodsSelected: []
     }),
 
-    [getType(orderControlActions.setModelInputValue)]: (state, { payload }) => ({
+    [getType(orderControlActions.setGoodsInputValue)]: (state, { payload }) => ({
         ...state,
-        modelInput: payload
+        goodsInput: payload
     }),
 
-    [getType(orderControlActions.setSelectedModels)]: (state, { payload }) => ({
+    [getType(orderControlActions.setSelectedGoods)]: (state, { payload }) => ({
         ...state,
-        modelsSelected: payload
+        goodsSelected: payload
     }),
 
-    [getType(orderControlActions.putModelInOrder)]: (state, { payload }) => ({
+    [getType(orderControlActions.putGoodInOrder)]: (state, { payload }) => ({
         ...state,
-        modelsDataInOrder: [...state.modelsDataInOrder, payload]
+        goodsInOrder: [...state.goodsInOrder, payload]
     }),
 
     [getType(orderControlActions.deleteModelInOrder)]: (state, { payload }) => ({
         ...state,
-        modelsDataInOrder: payload
+        goodsInOrder: payload
     }),
 
     [getType(orderControlActions.updateModelInOrder)]: (state, { payload }) => ({
         ...state,
-        modelsDataInOrder: payload
+        goodsInOrder: payload
     }),
 
     [getType(orderControlActions.clearOrder)]: (state) => ({
         ...state,
-        modelInput: '',
-        modelsDataInOrder: [],
-        modelsSelected: [],
-        showList: false
+        goodsInOrder: [],
+        goodsSelected: [],
+        goodsListOpen: false
     }),
 
-    [getType(orderControlActions.showList)]: (state, { payload }) => ({
+    [getType(orderControlActions.showGoodsList)]: (state, { payload }) => ({
         ...state,
-        showList: payload
-    }),
-
-    [getType(orderControlActions.setValidation)]: (state, { payload }) => ({
-        ...state,
-        validation: payload
+        goodsListOpen: payload
     }),
 
     [getType(orderControlActions.setDrawerOpen)]: (state, { payload }) => ({
