@@ -1,17 +1,6 @@
 import { createReducer, getType } from 'typesafe-actions'
-import type { Good, GoodInOrder } from '@admin/interfaces'
+import type { OrderControlState } from '@admin/types'
 import { orderControlActions } from '../actions'
-
-export interface InitialState {
-    rate: number
-    goodsInput: string
-    goods: Good[]
-    goodsInOrder: GoodInOrder[]
-    goodsSelected: Good[]
-
-    goodsListOpen: boolean
-    drawerOpen: boolean
-}
 
 const initialState = {
     rate: 0,
@@ -24,7 +13,7 @@ const initialState = {
     drawerOpen: false
 }
 
-const orderControl = createReducer<InitialState>(initialState, {
+const orderControl = createReducer<OrderControlState>(initialState, {
     [getType(orderControlActions.fetchPriceList.success)]: (state, { payload }) => ({
         ...state,
         rate: payload.rate.Valute.USD.Value,
@@ -52,12 +41,12 @@ const orderControl = createReducer<InitialState>(initialState, {
         goodsInOrder: [...state.goodsInOrder, payload]
     }),
 
-    [getType(orderControlActions.deleteModelInOrder)]: (state, { payload }) => ({
+    [getType(orderControlActions.deleteGoodFromOrder)]: (state, { payload }) => ({
         ...state,
         goodsInOrder: payload
     }),
 
-    [getType(orderControlActions.updateModelInOrder)]: (state, { payload }) => ({
+    [getType(orderControlActions.updateGoodInOrder)]: (state, { payload }) => ({
         ...state,
         goodsInOrder: payload
     }),

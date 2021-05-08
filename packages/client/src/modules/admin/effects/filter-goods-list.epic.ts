@@ -13,10 +13,12 @@ import {
 } from 'rxjs/operators'
 import { isActionOf } from 'typesafe-actions'
 
+const DEBOUNCE_TIME = 250
+
 export const filterGoodsList: Epic = (action$, state$) =>
     action$.pipe(
         filter(isActionOf(orderControlActions.filterModels)),
-        debounceTime(250),
+        debounceTime(DEBOUNCE_TIME),
         switchMap(({ payload }) =>
             state$.pipe(
                 first(),

@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { IPaginationMeta, IPaginationOptions } from "nestjs-typeorm-paginate";
+import { PaginationMeta, IPaginationOptions } from "nestjs-typeorm-paginate";
 import { UserDto } from "@users/dto/user.dto";
 import { CreateOrderDto } from "@order/dto/create-order.dto";
 import { UpdateOrderDto } from "@order/dto/update-order.dto";
@@ -56,6 +56,6 @@ export interface IOrderService {
     user: Observable<UserDto>
   ): Observable<{
     items: OrderEntity[];
-    meta: IPaginationMeta;
+    meta: PaginationMeta;
   }>;
 }

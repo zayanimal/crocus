@@ -1,14 +1,9 @@
-export type LazyComponents =
-  | "RequestsList"
-  | "Request"
-  | "Users"
-  | "Companies"
-  | "Orders";
+export type LazyComponents = 'Users' | 'Companies' | 'Orders'
 
 export interface IRouterItem {
-  key: string;
-  path: string;
-  name: string;
-  icon: string;
-  component: LazyComponents;
+    key: string
+    path: string
+    name: string
+    icon: string
+    component: LazyComponents
 }

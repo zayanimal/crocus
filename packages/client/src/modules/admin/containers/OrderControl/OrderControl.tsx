@@ -8,6 +8,7 @@ import { orderControlSelectors } from '@admin/store/selectors'
 import { orderControlActions } from '@admin/store/actions'
 import { bem } from '@interaktiv/utils'
 import type { RootStateTypes } from '@config/roots'
+import type { Good, GoodInOrder } from '@admin/types'
 import { columns } from './OrderControl.columns'
 
 const cn = bem('OrderControl')
@@ -29,8 +30,8 @@ const mapDispatchToProps = {
     filterModels: orderControlActions.filterModels,
     cleanPrice: orderControlActions.cleanPriceList,
     putGoodInOrder: orderControlActions.putGoodInOrder,
-    deleteModelInOrder: orderControlActions.deleteModelInOrder,
-    updateModelInOrder: orderControlActions.updateModelInOrder,
+    deleteGoodFromOrder: orderControlActions.deleteGoodFromOrder,
+    updateGoodInOrder: orderControlActions.updateGoodInOrder,
     showGoodsList: orderControlActions.showGoodsList,
     setDrawerOpen: orderControlActions.setDrawerOpen
 }
@@ -63,17 +64,20 @@ const OrderControl: React.FC<Props> = (props) => {
         }
     }, [fetchPrice, cleanPrice])
 
-    const orderHandler = (value: string | null): void => {
-        if (goodsInOrder.some(({ model }) => model === value)) return
+    function orderHandler(value: string | null): void {
+        if (findGood(goodsInOrder, value)) {
+            return
+        }
 
-        putGoodInOrder({
-            // eslint-disable-next-line prefer-object-spread
-            ...Object.assign(
-                {},
-                goods.find(({ model }) => model === value)
-            ),
-            count: 1
-        })
+        const good = findGood(goods, value)
+
+        if (good) {
+            putGoodInOrder({ count: 1, ...good })
+        }
+    }
+
+    function findGood(goodsList: (Good | GoodInOrder)[], value: string | null) {
+        return goodsList.find(({ model }) => model === value)
     }
 
     const onDrawerOpen = () => setDrawerOpen(true)

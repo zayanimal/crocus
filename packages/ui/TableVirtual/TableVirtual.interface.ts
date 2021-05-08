@@ -1,12 +1,19 @@
 import type { FC } from 'react'
 import type { ColumnProps } from 'react-virtualized'
-import type { IPaginationMeta } from '@interaktiv/client/src/modules/shared/interfaces/pagination.interface'
+
+interface PaginationMeta {
+    currentPage: number
+    itemCount: number
+    itemsPerPage: number
+    totalItems: number
+    totalPages: number
+}
 
 interface TableVirtualProps {
     list: Record<string, unknown>[]
     getList: (limit: number) => void
     columns: ColumnProps[]
-    meta: Pick<IPaginationMeta, 'currentPage' | 'totalItems' | 'totalPages'>
+    meta: Pick<PaginationMeta, 'currentPage' | 'totalItems' | 'totalPages'>
 }
 
 export type TableVirtualType = FC<TableVirtualProps>

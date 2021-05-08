@@ -1,6 +1,6 @@
 import { createReducer, getType } from 'typesafe-actions'
 import { ordersActions } from '@admin/store/actions'
-import { OrdersInitialState } from '@admin/interfaces'
+import { OrdersState } from '@admin/types'
 
 const initialState = {
     list: [],
@@ -15,7 +15,7 @@ const initialState = {
     orderEditName: ''
 }
 
-export const orders = createReducer<OrdersInitialState>(initialState, {
+export const orders = createReducer<OrdersState>(initialState, {
     [getType(ordersActions.getOrdersList.success)]: (state, { payload }) => ({
         ...state,
         list: payload.list,
