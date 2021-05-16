@@ -1,4 +1,4 @@
-import { PaginationMeta } from '@shared/types'
+import type { PaginationMeta } from '@interaktiv/ui/TableVirtual'
 
 export interface OrdersState {
     list: Record<string, unknown>[]

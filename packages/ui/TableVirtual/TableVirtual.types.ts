@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import type { ColumnProps } from 'react-virtualized'
 
-interface PaginationMeta {
+export interface PaginationMeta {
     currentPage: number
     itemCount: number
     itemsPerPage: number

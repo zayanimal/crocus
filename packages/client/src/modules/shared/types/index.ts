@@ -1,4 +1,3 @@
-export * from './pagination.types'
 export * from './listable-service.interface'
 export * from './validation-service.interface'
 export * from './normalizator.interface'

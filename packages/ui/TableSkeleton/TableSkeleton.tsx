@@ -17,9 +17,7 @@ export const TableSkeleton = (
             column,
             (acc, value, key) => {
                 set(acc, key, value)
-                set(acc, 'cellRenderer', () => (
-                    <div key={uuid()} className={cn()} />
-                ))
+                set(acc, 'cellRenderer', () => <div key={uuid()} className={cn()} />)
 
                 return acc
             },

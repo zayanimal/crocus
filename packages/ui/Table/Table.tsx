@@ -3,7 +3,7 @@ import { AutoSizer, Column, Table as TableVirtualized } from 'react-virtualized'
 import { bem, classes } from '@interaktiv/utils'
 import { TableSkeleton } from '../TableSkeleton'
 import { useTableFill } from './Table.hook'
-import type { TableProps } from './Table.interface'
+import type { TableProps } from './Table.types'
 import './Table.scss'
 
 const cn = bem('Table')

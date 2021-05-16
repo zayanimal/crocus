@@ -25,8 +25,8 @@ export const filterGoodsList: Epic = (action$, state$) =>
                 map(orderControlSelectors.goods),
                 map((goods) =>
                     goods.filter(
-                        ({ model }) =>
-                            model.includes(payload.toUpperCase()) && payload !== ''
+                        ({ good }) =>
+                            good.includes(payload.toUpperCase()) && payload !== ''
                     )
                 ),
                 map(orderControlActions.setSelectedGoods)

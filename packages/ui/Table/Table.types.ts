@@ -10,7 +10,7 @@ export interface TableFill {
 }
 
 export interface TableProps {
-    list: Record<string, unknown>[]
+    list: List
     columns: ColumnProps[]
     onRowsRendered?: (params: IndexRange) => void
     className?: string

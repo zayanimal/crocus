@@ -1,9 +1,9 @@
 export interface Good {
     id: number
-    model: string
+    good: string
     price: number
 }
 
 export interface GoodInOrder extends Good {
-    count: number
+    qty: number
 }

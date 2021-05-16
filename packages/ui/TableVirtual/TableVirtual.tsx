@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import InfiniteLoader from 'react-virtualized/dist/es/InfiniteLoader'
 import { Table } from '../Table'
-import type { TableVirtualType } from './TableVirtual.interface'
+import type { TableVirtualType } from './TableVirtual.types'
 import 'react-virtualized/styles.css'
 
 const PAGE_COUNT = 1

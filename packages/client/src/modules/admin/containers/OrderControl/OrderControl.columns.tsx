@@ -9,7 +9,7 @@ export const columns: ColumnProps[] = [
         width: 50
     },
     {
-        dataKey: 'name',
+        dataKey: 'good',
         label: 'Наименование',
         width: 250
     },
@@ -24,11 +24,6 @@ export const columns: ColumnProps[] = [
     {
         dataKey: 'price',
         label: 'Цена',
-        width: 150
-    },
-    {
-        dataKey: 'enduser',
-        label: 'Заказчик',
         width: 150
     }
 ]

@@ -72,12 +72,12 @@ const OrderControl: React.FC<Props> = (props) => {
         const good = findGood(goods, value)
 
         if (good) {
-            putGoodInOrder({ count: 1, ...good })
+            putGoodInOrder({ qty: 1, ...good })
         }
     }
 
     function findGood(goodsList: (Good | GoodInOrder)[], value: string | null) {
-        return goodsList.find(({ model }) => model === value)
+        return goodsList.find(({ good }) => good === value)
     }
 
     const onDrawerOpen = () => setDrawerOpen(true)
@@ -92,6 +92,7 @@ const OrderControl: React.FC<Props> = (props) => {
                     onClick={onDrawerOpen}>
                     Заказчик
                 </Button>
+
                 <GoodsList
                     value={goodsInputValue}
                     setValue={setGoodsInputValue}
@@ -102,10 +103,12 @@ const OrderControl: React.FC<Props> = (props) => {
                     onShowList={showGoodsList}
                 />
             </div>
+
             <div className={grid('col-9')}>
                 <div style={{ height: 'calc(100vh - 12em)' }}>
-                    <Table columns={columns} list={[]} />
+                    <Table columns={columns} list={goodsInOrder} />
                 </div>
+
                 <div className={cn('controls')}>
                     <Button
                         variant="outlined"
@@ -115,6 +118,7 @@ const OrderControl: React.FC<Props> = (props) => {
                     </Button>
                 </div>
             </div>
+
             <OrderControlDrawer open={drawerOpen} onSetOpen={setDrawerOpen} />
         </div>
     )

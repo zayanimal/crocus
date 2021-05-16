@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import List from 'react-virtualized/dist/es/List'
 import { bem } from '@interaktiv/utils/formatters'
 import type { ListRowRenderer } from 'react-virtualized'
-import type { GoodsListType } from './GoodsList.interface'
+import type { GoodsListType } from './GoodsList.types'
 import './GoodsList.scss'
 
 const cn = bem('GoodsList')
@@ -22,7 +22,7 @@ const GoodsList: GoodsListType = (props) => {
     const ESCAPE = 'Escape'
 
     useEffect(() => {
-        if (selected.length > 0) {
+        if (selected.length) {
             onShowList(true)
         } else {
             onShowList(false)
@@ -55,7 +55,7 @@ const GoodsList: GoodsListType = (props) => {
                 style={style}
                 onClick={listHandler}
                 className={cn('item')}>
-                {selected[index].model}
+                {selected[index].good}
             </option>
         )
     }

@@ -1,5 +1,5 @@
-import { PaginationMeta } from '@shared/types'
-import { UserFormEntity } from '@admin/entities'
+import type { UserFormEntity } from '@admin/entities'
+import type { PaginationMeta } from '@interaktiv/ui/TableVirtual'
 
 export type IUser = Omit<UserFormEntity, 'password'>
 
