@@ -1,16 +1,14 @@
 import type { ColumnProps, IndexRange } from 'react-virtualized'
 
-export type List = Record<string, unknown>[]
-
 export interface TableFill {
-    list: List
+    list: unknown[]
     columns: ColumnProps[]
-    mockList: List
+    mockList: unknown[]
     mockColumns: ColumnProps[]
 }
 
 export interface TableProps {
-    list: List
+    list: unknown[]
     columns: ColumnProps[]
     onRowsRendered?: (params: IndexRange) => void
     className?: string

@@ -89,12 +89,7 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
-                use: {
-                    loader: 'ts-loader',
-                    options: {
-                        transpileOnly: true,
-                    },
-                },
+                loader: 'ts-loader'
             },
             {
                 test: /\.css$|\.s[ac]ss$/i,

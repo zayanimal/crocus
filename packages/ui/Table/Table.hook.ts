@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import type { ColumnProps } from 'react-virtualized'
-import type { List, TableFill } from './Table.types'
+import type { TableFill } from './Table.types'
 
-export function useTableFill(data: TableFill): [List, ColumnProps[]] {
+export function useTableFill(data: TableFill): [unknown[], ColumnProps[]] {
     const { list, columns, mockList, mockColumns } = data
 
-    const [preparedList, setPreparedList] = useState([{}])
+    const [preparedList, setPreparedList] = useState<unknown[]>([{}])
     const [preparedColumns, setPreparedColumns] = useState<ColumnProps[]>([])
 
     useEffect(() => {
