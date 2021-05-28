@@ -5,6 +5,7 @@ import { forkJoin, of } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
 import { catchError, filter, map, switchMap } from 'rxjs/operators'
 import { isActionOf } from 'typesafe-actions'
+import type { Good } from '@admin/types'
 import price from './price.json'
 
 export const getGoodsList: Epic = (action$) =>
@@ -27,7 +28,7 @@ export const getGoodsList: Epic = (action$) =>
                         return of({ error: true, message: err.message })
                     })
                 ),
-                price: of(price)
+                price: of(price as Good[])
             }).pipe(
                 map(orderControlActions.fetchPriceList.success),
                 catchError((mes: string) =>

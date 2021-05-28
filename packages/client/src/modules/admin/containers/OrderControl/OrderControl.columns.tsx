@@ -1,5 +1,6 @@
 import React from 'react'
-import { Input } from '@material-ui/core'
+import { Button, Input } from '@material-ui/core'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import type { ColumnProps } from 'react-virtualized'
 
 export const columns: ColumnProps[] = [
@@ -25,5 +26,19 @@ export const columns: ColumnProps[] = [
         dataKey: 'price',
         label: 'Цена',
         width: 150
+    },
+    {
+        dataKey: 'node',
+        label: 'Действие',
+        width: 100,
+        cellRenderer: () => (
+            <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                onClick={() => {}}>
+                <DeleteOutlineIcon />
+            </Button>
+        )
     }
 ]

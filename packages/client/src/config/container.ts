@@ -13,7 +13,7 @@ export const dependencies = {
     dictionary: new System.DictionaryService(restService),
     users: new Admin.UsersService(restService),
     company: new Admin.CompanyService(restService),
-    order: new Admin.OrderService(restService)
+    order: new Admin.OrderService()
 }
 
 export type Dependencies = typeof dependencies

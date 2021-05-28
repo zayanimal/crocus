@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Button from '@material-ui/core/Button'
 import { connect } from 'react-redux'
 import { Table } from '@interaktiv/ui'
-import { GoodsList } from '@shared/components/GoodsList'
+import { GoodsList } from '@admin/components/GoodsList'
 import { OrderControlDrawer } from '@admin/components/OrderControlDrawer'
 import { orderControlSelectors } from '@admin/store/selectors'
 import { orderControlActions } from '@admin/store/actions'
@@ -106,7 +106,11 @@ const OrderControl: React.FC<Props> = (props) => {
 
             <div className={grid('col-9')}>
                 <div style={{ height: 'calc(100vh - 12em)' }}>
-                    <Table columns={columns} list={goodsInOrder} />
+                    <Table
+                        columns={columns}
+                        list={goodsInOrder}
+                        placeholder="Выберите модель"
+                    />
                 </div>
 
                 <div className={cn('controls')}>

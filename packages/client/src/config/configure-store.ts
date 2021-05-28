@@ -11,7 +11,7 @@ export const configureStore = () => {
     const store = createStore(
         rootReducer,
         processType('development')
-            ? composeWithDevTools(applyMiddleware(epicMiddleware))
+            ? composeWithDevTools({})(applyMiddleware(epicMiddleware))
             : applyMiddleware(epicMiddleware)
     )
 

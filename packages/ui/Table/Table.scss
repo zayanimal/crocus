@@ -3,6 +3,11 @@
     border-bottom: 1px solid var(--color-row-border);
   }
 
+  &__no-data {
+    margin-top: 5em;
+    text-align: center;
+  }
+
   .ReactVirtualized__Table__Grid:focus {
     outline: none;
   }

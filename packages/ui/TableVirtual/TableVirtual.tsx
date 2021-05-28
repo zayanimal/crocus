@@ -32,6 +32,7 @@ const TableVirtual: TableVirtualType = (props) => {
                     <Table
                         list={list}
                         columns={columns}
+                        withSkeleton
                         onRowsRendered={onRowsRendered}
                         ref={registerChild}
                     />

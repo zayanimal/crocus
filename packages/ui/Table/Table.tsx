@@ -3,20 +3,33 @@ import { AutoSizer, Column, Table as TableVirtualized } from 'react-virtualized'
 import { bem, classes } from '@interaktiv/utils'
 import { TableSkeleton } from '../TableSkeleton'
 import { useTableFill } from './Table.hook'
-import type { TableProps } from './Table.types'
+import type { PlaceholderProps, TableProps } from './Table.types'
 import './Table.scss'
 
 const cn = bem('Table')
 
+const Placeholder = (props: PlaceholderProps) => {
+    const { title = '' } = props
+
+    return <div className={cn('no-data')}>{title}</div>
+}
+
 const Table = forwardRef<TableVirtualized, TableProps>((props, ref) => {
-    const { list = [], columns = [], className } = props
+    const {
+        list = [],
+        columns = [],
+        withSkeleton = false,
+        placeholder,
+        className
+    } = props
 
     const [mockColumns, mockList] = TableSkeleton(columns)
     const [preparedList, preparedColumns] = useTableFill({
         list,
         columns,
         mockList,
-        mockColumns
+        mockColumns,
+        withSkeleton
     })
 
     return (
@@ -28,6 +41,7 @@ const Table = forwardRef<TableVirtualized, TableProps>((props, ref) => {
                     width={width}
                     height={height}
                     headerHeight={60}
+                    noRowsRenderer={() => <Placeholder title={placeholder} />}
                     rowClassName={cn('row')}
                     rowHeight={60}
                     rowCount={preparedList.length}

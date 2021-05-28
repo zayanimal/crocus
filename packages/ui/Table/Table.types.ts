@@ -5,11 +5,18 @@ export interface TableFill {
     columns: ColumnProps[]
     mockList: unknown[]
     mockColumns: ColumnProps[]
+    withSkeleton: boolean
 }
 
 export interface TableProps {
     list: unknown[]
     columns: ColumnProps[]
-    onRowsRendered?: (params: IndexRange) => void
+    withSkeleton?: boolean
+    placeholder?: string
     className?: string
+    onRowsRendered?: (params: IndexRange) => void
+}
+
+export interface PlaceholderProps {
+    title?: string
 }

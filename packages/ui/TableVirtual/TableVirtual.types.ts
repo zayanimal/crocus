@@ -10,7 +10,7 @@ export interface PaginationMeta {
 }
 
 interface TableVirtualProps {
-    list: Record<string, unknown>[]
+    list: unknown[]
     getList: (limit: number) => void
     columns: ColumnProps[]
     meta: Pick<PaginationMeta, 'currentPage' | 'totalItems' | 'totalPages'>

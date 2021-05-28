@@ -3,7 +3,7 @@ import type { ColumnProps } from 'react-virtualized'
 import type { TableFill } from './Table.types'
 
 export function useTableFill(data: TableFill): [unknown[], ColumnProps[]] {
-    const { list, columns, mockList, mockColumns } = data
+    const { list, columns, mockList, mockColumns, withSkeleton = false } = data
 
     const [preparedList, setPreparedList] = useState<unknown[]>([{}])
     const [preparedColumns, setPreparedColumns] = useState<ColumnProps[]>([])
@@ -12,11 +12,11 @@ export function useTableFill(data: TableFill): [unknown[], ColumnProps[]] {
         setPreparedList(mockList)
         setPreparedColumns(mockColumns)
 
-        if (list.length) {
+        if (list.length || !withSkeleton) {
             setPreparedList(list)
             setPreparedColumns(columns)
         }
-    }, [list, columns, mockList, mockColumns])
+    }, [list, columns, mockList, mockColumns, withSkeleton])
 
     return [preparedList, preparedColumns]
 }
