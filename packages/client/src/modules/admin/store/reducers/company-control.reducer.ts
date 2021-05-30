@@ -1,23 +1,26 @@
-import { createReducer, getType } from "typesafe-actions";
-import uuid from "uuid-random";
-import { companyControlActions, searchUserActions } from "@admin/store/actions";
-import { RequisitesEntity, BankRequisitesEntity } from "@admin/entities";
-import { Normalised } from "@interaktiv/utils/generics";
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable indent */
+import { createReducer, getType } from 'typesafe-actions';
+import uuid from 'uuid-random';
+import { companyControlActions, searchUserActions } from '@admin/store/actions';
+import { BankRequisitesEntity, RequisitesEntity } from '@admin/entities';
+import { Normalised } from '@interaktiv/utils/generics';
 
 const initialState = {
   loading: false,
   isFetched: false,
   drawer: false,
-  id: "",
-  currentRequisitesId: "",
-  name: "",
+  id: '',
+  currentRequisitesId: '',
+  name: '',
   users: [] as string[],
   contact: {
     id: uuid(),
-    phone: "",
-    email: "",
-    website: "",
-    validation: { email: "", phone: "" },
+    phone: '',
+    email: '',
+    website: '',
+    validation: { email: '', phone: '' },
   },
   requisites: [] as string[],
   foundUsers: [] as string[],
@@ -25,7 +28,7 @@ const initialState = {
     requisites: {} as Normalised<RequisitesEntity>,
     bank: {} as Normalised<BankRequisitesEntity>,
   },
-  validation: { name: "", users: "" },
+  validation: { name: '', users: '' },
 };
 
 export const companyControl = createReducer<typeof initialState>(initialState, {
@@ -177,9 +180,9 @@ export const companyControl = createReducer<typeof initialState>(initialState, {
     ...state,
     contact: {
       ...state.contact,
-      validation: { email: "", phone: "" },
+      validation: { email: '', phone: '' },
     },
-    validation: { name: "", users: "" },
+    validation: { name: '', users: '' },
   }),
 
   [getType(searchUserActions.setFound)]: (state, { payload }) => ({

@@ -103,7 +103,6 @@ const OrderControl: React.FC<Props> = (props) => {
                     onShowList={showGoodsList}
                 />
             </div>
-
             <div className={grid('col-9')}>
                 <div style={{ height: 'calc(100vh - 12em)' }}>
                     <Table
@@ -122,7 +121,6 @@ const OrderControl: React.FC<Props> = (props) => {
                     </Button>
                 </div>
             </div>
-
             <OrderControlDrawer open={drawerOpen} onSetOpen={setDrawerOpen} />
         </div>
     )

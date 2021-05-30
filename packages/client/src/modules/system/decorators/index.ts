@@ -1,1 +1,1 @@
-export * from "@system/decorators/api.decorator";
+export * from '@system/decorators/api.decorator'

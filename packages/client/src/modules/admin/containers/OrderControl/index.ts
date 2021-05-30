@@ -1,1 +1,1 @@
-export * from "./OrderControl";
+export * from './OrderControl'

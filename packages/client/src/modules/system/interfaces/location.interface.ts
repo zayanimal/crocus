@@ -1,15 +1,15 @@
 export interface Path {
-  pathname: string;
+    pathname: string
 }
 
 interface LocationState {
-  from: Path;
+    from: Path
 }
 
 export interface Location {
-  pathname: string;
-  search: string;
-  state: LocationState;
-  hash: string;
-  key?: string;
+    pathname: string
+    search: string
+    state: LocationState
+    hash: string
+    key?: string
 }

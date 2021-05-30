@@ -1,22 +1,22 @@
-import { createReducer, getType } from "typesafe-actions";
-import * as dictionaryActions from "@system/store/actions/dictionary.actions";
-import { Dictionary } from "@system/interfaces/dictionary.interface";
+import { createReducer, getType } from 'typesafe-actions'
+import * as dictionaryActions from '@system/store/actions/dictionary.actions'
+import { Dictionary } from '@system/interfaces/dictionary.interface'
 
 interface InitialState {
-  roles: Dictionary[];
-  permissions: Dictionary[];
+    roles: Dictionary[]
+    permissions: Dictionary[]
 }
 
 const initialState = {
-  roles: [],
-  permissions: [],
-};
+    roles: [],
+    permissions: []
+}
 
 export const dictionaryReducer = createReducer<InitialState>(initialState, {
-  [getType(dictionaryActions.setDictionary)]: (state, { payload }) => ({
-    ...state,
-    ...payload,
-  }),
+    [getType(dictionaryActions.setDictionary)]: (state, { payload }) => ({
+        ...state,
+        ...payload
+    }),
 
-  [getType(dictionaryActions.clearDictionary)]: () => ({ ...initialState }),
-});
+    [getType(dictionaryActions.clearDictionary)]: () => ({ ...initialState })
+})

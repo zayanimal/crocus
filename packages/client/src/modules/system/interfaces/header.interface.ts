@@ -1,7 +1,7 @@
-type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export interface IHeader {
-  url: string;
-  method: HttpMethod;
-  body?: object;
+    url: string
+    method: HttpMethod
+    body?: object
 }

@@ -7,15 +7,20 @@ import {
 } from 'class-validator'
 import { ContactsEntity } from '@admin/entities'
 
+const USERNAME_MIN_LENGTH = 4
+const USERNAME_MAX_LENGTH = 15
+const PASSWORD_MIN_LENGTH = 15
+const PASSWORD_MAX_LENGTH = 15
+
 export class UserFormEntity {
-    @MinLength(4, { message: 'Не меньше 4-х символов' })
-    @MaxLength(15, { message: 'Не больше 15-ти символов' })
+    @MinLength(USERNAME_MIN_LENGTH, { message: 'Не меньше 4-х символов' })
+    @MaxLength(USERNAME_MAX_LENGTH, { message: 'Не больше 15-ти символов' })
     @IsAlphanumeric('en-US', { message: 'Только английские буквы или цифры' })
     username!: string
 
     @ValidateIf(({ password }) => !!password.length)
-    @MinLength(5, { message: 'Не меньше 5-ти символов' })
-    @MaxLength(30, { message: 'Не больше 30-ти символов' })
+    @MinLength(PASSWORD_MIN_LENGTH, { message: 'Не меньше 5-ти символов' })
+    @MaxLength(PASSWORD_MAX_LENGTH, { message: 'Не больше 30-ти символов' })
     @IsAlphanumeric('en-US', { message: 'Только английские буквы или цифры' })
     password!: string
 

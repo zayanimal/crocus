@@ -3,8 +3,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
-const ELintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -89,7 +89,10 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true
+                }
             },
             {
                 test: /\.css$|\.s[ac]ss$/i,
@@ -118,9 +121,13 @@ module.exports = {
     },
 
     plugins: [
-        new ErrorOverlayPlugin(),
+        new ForkTsCheckerWebpackPlugin({
+            eslint: {
+                files: './src/**/*.{ts,tsx,js,jsx}'
+            }
+        }),
 
-        new ELintPlugin(),
+        new ErrorOverlayPlugin(),
 
         new CleanWebpackPlugin(),
 

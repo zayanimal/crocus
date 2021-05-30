@@ -1,1 +1,1 @@
-export * from "@shared/entities/validation.entity";
+export * from '@shared/entities/validation.entity'

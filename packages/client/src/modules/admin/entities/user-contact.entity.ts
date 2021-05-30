@@ -1,5 +1,8 @@
 import { IsEmail, IsPhoneNumber, MaxLength, MinLength } from 'class-validator'
 
+const MIN_LENGTH = 5
+const MAX_LENGTH = 20
+
 export class ContactsEntity {
     @IsEmail({}, { message: 'Здесь должна быть почта' })
     email!: string
@@ -9,7 +12,7 @@ export class ContactsEntity {
     })
     phone!: string
 
-    @MinLength(5, { message: 'Не меньше 5-ти символов' })
-    @MaxLength(20, { message: 'Не больше 20-ти символов' })
+    @MinLength(MIN_LENGTH, { message: 'Не меньше 5-ти символов' })
+    @MaxLength(MAX_LENGTH, { message: 'Не больше 20-ти символов' })
     position!: string
 }

@@ -34,7 +34,9 @@ const Users: React.FC<UsersProps> = (props) => {
             setHeaderTitle('Управление пользователями')
 
             if (!meta.currentPage) {
-                getList(1)
+                const GET_COUNT = 1
+
+                getList(GET_COUNT)
             }
         }
     }, [getList, setHeaderTitle, pathname, meta])

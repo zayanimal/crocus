@@ -1,1 +1,1 @@
-export * from "./BankRequisitesFields";
+export * from './BankRequisitesFields'

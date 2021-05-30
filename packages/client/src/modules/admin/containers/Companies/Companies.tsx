@@ -35,8 +35,10 @@ const Companies: React.FC<CompaniesProps> = (props) => {
             setHeaderTitle('Управление компаниями')
             clearForms()
 
+            const GET_COUNT = 1
+
             if (!meta.currentPage) {
-                getCompaniesList(1)
+                getCompaniesList(GET_COUNT)
             }
         }
     }, [getCompaniesList, setHeaderTitle, pathname, meta, clearForms])

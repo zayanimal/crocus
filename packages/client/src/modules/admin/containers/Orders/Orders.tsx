@@ -27,7 +27,10 @@ const Orders: React.FC<OrdersProps> = (props) => {
 
     useEffect(() => {
         setHeaderTitle('Управление заказами')
-        getOrdersList(1)
+
+        const GET_COUNT = 1
+
+        getOrdersList(GET_COUNT)
     }, [setHeaderTitle, getOrdersList])
 
     return (

@@ -1,1 +1,1 @@
-export * from "./UserContactsFields";
+export * from './UserContactsFields'

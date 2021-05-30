@@ -21,9 +21,11 @@ const Drawer: React.FC<LayoutProps> = (props) => {
         if (drawerState) {
             setHide(drawerState)
         } else {
+            const TIME_OUT = 200
+
             setTimeout(() => {
                 setHide(drawerState)
-            }, 200)
+            }, TIME_OUT)
         }
     }, [drawerState, authFetched, routerItems, getRouterItems])
 

@@ -1,29 +1,29 @@
 export interface ITokenService {
-  token: string;
+    token: string
 
-  /**
-   * Проверка непригодности токена
-   */
-  isExpired(): boolean;
+    /**
+     * Проверка непригодности токена
+     */
+    isExpired(): boolean
 
-  /**
-   * Получить действующий токен
-   */
-  getToken(): string;
+    /**
+     * Получить действующий токен
+     */
+    getToken(): string
 
-  /**
-   * Установить токен
-   * @param token новый токен
-   */
-  setToken(token: string): void;
+    /**
+     * Установить токен
+     * @param token новый токен
+     */
+    setToken(token: string): void
 
-  /**
-   * Получить текущий статус авторизации
-   */
-  isLoggedIn(): boolean;
+    /**
+     * Получить текущий статус авторизации
+     */
+    isLoggedIn(): boolean
 
-  /**
-   * Удалить токен
-   */
-  removeToken(): void;
+    /**
+     * Удалить токен
+     */
+    removeToken(): void
 }

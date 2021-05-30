@@ -1,5 +1,5 @@
-import { Companies } from "./Companies";
+import { Companies } from './Companies'
 
-export * from "./Companies";
+export * from './Companies'
 
-export default Companies;
+export default Companies

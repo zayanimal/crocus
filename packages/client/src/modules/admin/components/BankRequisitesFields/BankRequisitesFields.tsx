@@ -12,7 +12,10 @@ const cn = bem('BankRequisitesFields')
 const BankRequisitesFields: React.FC<CompanyControlProps> = (props) => {
     const { bankRequisites, updateBankForm, deleteBankForm } = props
 
-    const onDelete = (id: string) => () => setTimeout(() => deleteBankForm(id), 10)
+    const TIMEOUT = 10
+
+    const onDelete = (id: string) => () =>
+        setTimeout(() => deleteBankForm(id), TIMEOUT)
 
     return bankRequisites ? (
         <>
