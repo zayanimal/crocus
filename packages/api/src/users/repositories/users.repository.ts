@@ -3,9 +3,7 @@ import {
   map,
   mapTo,
   mergeMap,
-  switchMapTo,
   switchMap,
-  mergeMapTo,
 } from "rxjs/operators";
 import { Repository, EntityRepository, Raw } from "typeorm";
 import { plainToClass } from "class-transformer";
@@ -97,26 +95,6 @@ export class UsersRepository extends Repository<Users> {
         )
       )
     );
-  }
-
-  updateUserCompany(users: string[], companyId: string) {
-    return from(this.find({ companyId })).pipe(
-      mergeMap((usrs) =>
-        usrs.length
-          ? from(usrs).pipe(
-              mergeMap(({ username }) =>
-                this.update({ username }, { companyId: null })
-              ),
-              switchMapTo(from(users))
-            )
-          : from(users)
-      ),
-      mergeMap((username) => this.update({ username }, { companyId }))
-    );
-  }
-
-  removeUserCompany(companyId: string) {
-    return from(this.update({ companyId }, { companyId: null }));
   }
 
   transform(users: Users | Users[], options?: object) {

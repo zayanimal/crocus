@@ -12,7 +12,6 @@ import { Repository } from "typeorm";
 import { compare } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 import { UsersService } from "@users/services/users.service";
-import { ContactsService } from "@users/services/contacts.service";
 import { CreateUserDto } from "@users/dto/create-user.dto";
 import { LoginUserDto } from "@users/dto/login-user.dto";
 import { LoginStatus } from "@auth/interfaces/login-status.interface";
@@ -32,7 +31,6 @@ export class AuthService {
     private readonly permissionsRepository: Repository<Permissions>,
     @Inject(forwardRef(() => UsersService))
     private usersService: UsersService,
-    private contactsService: ContactsService,
     private jwtService: JwtService
   ) {}
 
@@ -107,7 +105,7 @@ export class AuthService {
    * @param userDto логин и пароль пользователя
    */
   register(userDto: CreateUserDto): Observable<{ message: string }> {
-    const { username, password, role, permissions, contacts } = userDto;
+    const { username, password, role, permissions } = userDto;
 
     return this.checkUser(username).pipe(
       mergeMap(() =>
@@ -127,19 +125,6 @@ export class AuthService {
         )
       ),
       mergeMap((readyUser) => from(this.usersRepository.save(readyUser))),
-      mergeMap((savedUser) =>
-        from(
-          this.contactsService.create({ ...contacts, usersId: savedUser.id })
-        )
-      ),
-      mergeMap((savedContact) =>
-        from(
-          this.usersRepository.update(
-            { username },
-            { contactsId: savedContact.id }
-          )
-        )
-      ),
       mapTo({ message: `Пользователь ${username} добавлен` })
     );
   }

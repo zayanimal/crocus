@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "secret",
-  "database": "interaktiv",
+  "database": "test",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
 }

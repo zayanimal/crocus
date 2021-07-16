@@ -2,7 +2,7 @@ import { FC, lazy } from 'react'
 import { LazyComponents } from '@system/interfaces/router.interface'
 
 class RouteComponent {
-    constructor(private Users: FC, private Companies: FC, private Orders: FC) {}
+    constructor(private Users: FC) {}
 
     create(name: LazyComponents) {
         return this[name]
@@ -10,7 +10,5 @@ class RouteComponent {
 }
 
 export const routeComponent = new RouteComponent(
-    lazy(() => import('@admin/containers/Users')),
-    lazy(() => import('@admin/containers/Companies')),
-    lazy(() => import('@admin/containers/Orders'))
+    lazy(() => import('@admin/containers/Users'))
 )

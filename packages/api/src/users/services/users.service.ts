@@ -13,15 +13,12 @@ import { hash } from "bcrypt";
 import { AuthService } from "@auth/auth.service";
 import { CreateUserDto } from "@users/dto/create-user.dto";
 import { UsersRepository } from "@users/repositories/users.repository";
-import { ContactsRepository } from "../repositories/contacts.repository";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UsersRepository)
     private readonly usersRepository: UsersRepository,
-    @InjectRepository(ContactsRepository)
-    private readonly contactsRepository: ContactsRepository,
     @Inject(forwardRef(() => AuthService))
     private authService: AuthService
   ) {}
@@ -86,8 +83,7 @@ export class UsersService {
       password,
       isActive,
       role,
-      permissions,
-      contacts,
+      permissions
     } = userDto;
 
     return forkJoin({
@@ -109,21 +105,6 @@ export class UsersService {
 
         return from(this.usersRepository.save(user));
       }),
-      mergeMap(({ id }) =>
-        from(this.contactsRepository.findOne({ where: { usersId: id } })).pipe(
-          mergeMap(checkEntity("Пользователь не существует")),
-          mergeMap((contact) => {
-            const { email, phone, position } = contacts;
-
-            contact.email = email;
-            contact.phone = phone;
-            contact.position = position;
-
-            return from(this.contactsRepository.save(contact));
-          }),
-          mapTo({ message: `Пользователь изменён` })
-        )
-      ),
       catchError((err) => of(err.message))
     );
   }
@@ -134,22 +115,5 @@ export class UsersService {
    */
   removeUser(username: string) {
     return this.usersRepository.removeUser(username);
-  }
-
-  /**
-   * Обновить в пользователе его принадлежность к организации
-   * @param users список пользователей
-   * @param id айди компании
-   */
-  updateUserCompany(users: string[], id: string) {
-    return this.usersRepository.updateUserCompany(users, id);
-  }
-
-  /**
-   * Удалить пользователя в компании
-   * @param companyId
-   */
-  removeUserCompany(companyId: string) {
-    return this.usersRepository.removeUserCompany(companyId);
   }
 }

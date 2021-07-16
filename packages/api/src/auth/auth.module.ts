@@ -9,12 +9,11 @@ import { JwtModule } from "@nestjs/jwt";
 import { Users } from "@users/entities/users.entity";
 import { Roles } from "@auth/entities/roles.entity";
 import { Permissions } from "@auth/entities/permissions.entity";
-import { ContactUser } from "@users/entities/contact-user.entity";
 
 @Module({
   imports: [
     forwardRef(() => UsersModule),
-    TypeOrmModule.forFeature([Users, Roles, Permissions, ContactUser]),
+    TypeOrmModule.forFeature([Users, Roles, Permissions]),
     PassportModule.register({
       defaultStrategy: "jwt",
       property: "user",

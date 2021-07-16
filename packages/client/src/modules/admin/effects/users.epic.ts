@@ -6,7 +6,7 @@ import { isActionOf } from 'typesafe-actions'
 import { systemActions } from '@system/store/actions'
 import { userControlActions, usersActions } from '@admin/store/actions'
 import { userControlSelectors, userSelectors } from '@admin/store/selectors'
-import { ContactsEntity, UserFormEntity } from '@admin/entities'
+import { UserFormEntity } from '@admin/entities'
 
 /**
  * Получить список пользователей с пагинацией
@@ -36,13 +36,7 @@ export const sendNewUser: Epic = (action$, state$, { users, validation }) =>
         mergeMap(() =>
             state$.pipe(
                 first(),
-                map((state) => ({
-                    ...userControlSelectors.newUser(state),
-                    contacts: plainToClass(
-                        ContactsEntity,
-                        userControlSelectors.newContacts(state)
-                    )
-                })),
+                map((state) => userControlSelectors.newUser(state)),
                 mergeMap((payld) =>
                     validation.check$(plainToClass(UserFormEntity, payld))
                 ),

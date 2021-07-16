@@ -1,11 +1,4 @@
-import {
-    IsAlphanumeric,
-    MaxLength,
-    MinLength,
-    ValidateIf,
-    ValidateNested
-} from 'class-validator'
-import { ContactsEntity } from '@admin/entities'
+import { IsAlphanumeric, MaxLength, MinLength, ValidateIf } from 'class-validator'
 
 const USERNAME_MIN_LENGTH = 4
 const USERNAME_MAX_LENGTH = 15
@@ -29,7 +22,4 @@ export class UserFormEntity {
     permissions!: string[]
 
     isActive!: boolean
-
-    @ValidateNested()
-    contacts!: ContactsEntity
 }
