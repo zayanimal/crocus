@@ -6,7 +6,7 @@
             "@/*": ["/*"],
             "@config/*": ["config/*"],
             "@shared/*": ["modules/shared/*"],
-            "@admin/*": ["modules/admin/*"],
+            "@main/*": ["modules/main/*"],
             "@system/*": ["modules/system/*"],
             "@images/*": ["assets/images/*"],
             "@icons/*": ["assets/icons/*"],

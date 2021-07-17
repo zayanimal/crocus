@@ -67,7 +67,7 @@ module.exports = {
             '@/': path.resolve(__dirname, 'src', 'src'),
             '@config': path.resolve(__dirname, 'src', 'config'),
             '@shared': path.resolve(__dirname, 'src', 'modules/shared'),
-            '@admin': path.resolve(__dirname, 'src', 'modules/admin'),
+            '@main': path.resolve(__dirname, 'src', 'modules/main'),
             '@system': path.resolve(__dirname, 'src', 'modules/system'),
             '@images': path.resolve(__dirname, 'src', 'assets/images'),
             '@icons': path.resolve(__dirname, 'src', 'assets/icons'),

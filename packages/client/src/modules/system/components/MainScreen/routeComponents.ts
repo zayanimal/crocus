@@ -10,5 +10,5 @@ class RouteComponent {
 }
 
 export const routeComponent = new RouteComponent(
-    lazy(() => import('@admin/containers/Users'))
+    lazy(() => import('@main/containers/Users'))
 )
