@@ -1,7 +1,6 @@
 import { Exclude, Expose, Transform } from "class-transformer";
 import { groupSerial } from "@shared/utils";
-import { Roles } from "@auth/entities/roles.entity";
-import { Permissions } from "@auth/entities/permissions.entity";
+import { Role } from "@/auth/entities/role.entity";
 
 export const LIST_GROUP = groupSerial("list");
 export const FIND_GROUP = groupSerial("find");
@@ -28,11 +27,5 @@ export class UsersEntity {
 
   @Expose({ groups: ["list", "find", "edit"] })
   @Transform(({ value }) => value.name)
-  role!: Roles;
-
-  @Expose({ groups: ["find", "edit"] })
-  @Transform(({ value }: { value: Permissions[] }) =>
-    value.map(({ name }) => name)
-  )
-  permissions!: Permissions[];
+  role!: Role;
 }

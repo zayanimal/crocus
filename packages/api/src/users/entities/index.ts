@@ -1,1 +1,1 @@
-export * from "@users/entities/users.entity";
+export { User } from "@users/entities/user.entity";

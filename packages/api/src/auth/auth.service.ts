@@ -1,5 +1,5 @@
 import { Observable, of, from, throwError, forkJoin } from "rxjs";
-import { toArray, map, mergeMap, mapTo } from "rxjs/operators";
+import { map, mergeMap, mapTo } from "rxjs/operators";
 import {
   Injectable,
   HttpException,
@@ -16,19 +16,16 @@ import { CreateUserDto } from "@users/dto/create-user.dto";
 import { LoginUserDto } from "@users/dto/login-user.dto";
 import { LoginStatus } from "@auth/interfaces/login-status.interface";
 import { JwtPayload } from "@auth/interfaces/payload.interface";
-import { Users } from "@users/entities/users.entity";
-import { Roles } from "@auth/entities/roles.entity";
-import { Permissions } from "@auth/entities/permissions.entity";
+import { User } from "@users/entities/user.entity";
+import { Role } from "@auth/entities/role.entity";
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>,
-    @InjectRepository(Roles)
-    private readonly rolesRepository: Repository<Roles>,
-    @InjectRepository(Permissions)
-    private readonly permissionsRepository: Repository<Permissions>,
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
+    @InjectRepository(Role)
+    private readonly rolesRepository: Repository<Role>,
     @Inject(forwardRef(() => UsersService))
     private usersService: UsersService,
     private jwtService: JwtService
@@ -77,48 +74,24 @@ export class AuthService {
     );
   }
 
-  /**
-   * Проверка существования введеных прав в словаре прав
-   * @param permissions
-   */
-  checkPermissions(permissions: string[]) {
-    return from(
-      this.permissionsRepository
-        .createQueryBuilder("permissions")
-        .where("permissions.name IN (:...name)", { name: permissions })
-        .getMany()
-    ).pipe(
-      mergeMap((foundPerm) => {
-        if (!foundPerm.length || foundPerm.length !== permissions.length) {
-          return throwError(
-            new HttpException("Введены неверные права", HttpStatus.BAD_REQUEST)
-          );
-        }
-
-        return from(foundPerm).pipe(toArray());
-      })
-    );
-  }
 
   /**
    * Проверить существует ли пользователь в базе, если нет создать нового
    * @param userDto логин и пароль пользователя
    */
   register(userDto: CreateUserDto): Observable<{ message: string }> {
-    const { username, password, role, permissions } = userDto;
+    const { username, password, role } = userDto;
 
     return this.checkUser(username).pipe(
       mergeMap(() =>
         forkJoin({
           roleId: this.checkRole(role).pipe(map(({ id }) => id)),
-          permissions: this.checkPermissions(permissions),
         })
       ),
-      mergeMap(({ roleId, permissions }) =>
+      mergeMap(({ roleId }) =>
         of(this.usersRepository.create({ username, password })).pipe(
           map((newUser) => {
             newUser.roleId = roleId;
-            newUser.permissions = permissions;
 
             return newUser;
           })
@@ -137,7 +110,7 @@ export class AuthService {
     return from(
       this.usersRepository.findOne({
         where: { username },
-        relations: ["role", "permissions"],
+        relations: ["role"],
       })
     ).pipe(
       mergeMap((user) =>
@@ -167,9 +140,7 @@ export class AuthService {
           id: user.id,
           username: user.username,
         }),
-        role: user.role.name,
-        isActive: user.isActive,
-        permissions: user.permissions.map(({ name }) => name),
+        role: user.role.name
       }))
     );
   }

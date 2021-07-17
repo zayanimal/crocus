@@ -6,9 +6,8 @@ import {
   forwardRef,
   InternalServerErrorException,
 } from "@nestjs/common";
-import { checkEntity } from "@shared/utils";
 import { InjectRepository } from "@nestjs/typeorm";
-import { paginate, Pagination } from "nestjs-typeorm-paginate";
+import { paginate } from "nestjs-typeorm-paginate";
 import { hash } from "bcrypt";
 import { AuthService } from "@auth/auth.service";
 import { CreateUserDto } from "@users/dto/create-user.dto";
@@ -76,12 +75,11 @@ export class UsersService {
    */
   editUser(
     editableUser: string,
-    userDto: CreateUserDto & { isActive: boolean }
+    userDto: CreateUserDto
   ) {
     const {
       username,
       password,
-      isActive,
       role,
       permissions
     } = userDto;
@@ -89,19 +87,16 @@ export class UsersService {
     return forkJoin({
       user: this.usersRepository.searchRaw(editableUser),
       foundRole: from(this.authService.checkRole(role)),
-      permissions: from(this.authService.checkPermissions(permissions)),
       hashedPassword: password.length ? from(hash(password, 10)) : of(""),
     }).pipe(
       mergeMap((props) => {
-        const { user, foundRole, permissions, hashedPassword } = props;
+        const { user, foundRole, hashedPassword } = props;
 
         user.username = username;
         if (hashedPassword.length) {
           user.password = hashedPassword;
         }
-        user.isActive = isActive;
         user.role = foundRole;
-        user.permissions = permissions;
 
         return from(this.usersRepository.save(user));
       }),

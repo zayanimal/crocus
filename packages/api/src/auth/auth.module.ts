@@ -6,14 +6,13 @@ import { UsersModule } from "@users/users.module";
 import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./jwt.strategy";
 import { JwtModule } from "@nestjs/jwt";
-import { Users } from "@users/entities/users.entity";
-import { Roles } from "@auth/entities/roles.entity";
-import { Permissions } from "@auth/entities/permissions.entity";
+import { User } from "@users/entities/user.entity";
+import { Role } from "@auth/entities/role.entity";
 
 @Module({
   imports: [
     forwardRef(() => UsersModule),
-    TypeOrmModule.forFeature([Users, Roles, Permissions]),
+    TypeOrmModule.forFeature([User, Role]),
     PassportModule.register({
       defaultStrategy: "jwt",
       property: "user",

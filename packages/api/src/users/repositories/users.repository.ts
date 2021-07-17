@@ -7,7 +7,7 @@ import {
 } from "rxjs/operators";
 import { Repository, EntityRepository, Raw } from "typeorm";
 import { plainToClass } from "class-transformer";
-import { Users } from "@users/entities/users.entity";
+import { User } from "@users/entities/user.entity";
 import { checkEntity } from "@shared/utils";
 import {
   UsersEntity,
@@ -16,8 +16,8 @@ import {
   EDIT_GROUP,
 } from "@users/users.serializer";
 
-@EntityRepository(Users)
-export class UsersRepository extends Repository<Users> {
+@EntityRepository(User)
+export class UsersRepository extends Repository<User> {
   errorMessage: string = "Пользователь не существует";
 
   private dbRequest(username: string) {
@@ -97,11 +97,11 @@ export class UsersRepository extends Repository<Users> {
     );
   }
 
-  transform(users: Users | Users[], options?: object) {
+  transform(users: User | User[], options?: object) {
     return plainToClass(UsersEntity, users, options);
   }
 
-  transformList(users: Users[]) {
+  transformList(users: User[]) {
     return this.transform(users, LIST_GROUP);
   }
 }
