@@ -2,7 +2,6 @@ import { Observable } from "rxjs";
 import { Injectable } from "@nestjs/common";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { PassportStrategy } from "@nestjs/passport";
-import { UserDto } from "@users/dto/user.dto";
 import { AuthService } from "./auth.service";
 
 @Injectable()

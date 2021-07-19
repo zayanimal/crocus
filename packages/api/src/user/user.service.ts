@@ -10,14 +10,14 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { paginate } from "nestjs-typeorm-paginate";
 import { hash } from "bcrypt";
 import { AuthService } from "@auth/auth.service";
-import { CreateUserDto } from "@users/dto/create-user.dto";
-import { UsersRepository } from "@users/repositories/users.repository";
+import { CreateUserDto } from "@user/dto/create-user.dto";
+import { UserRepository } from "@user/user.repository";
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
-    @InjectRepository(UsersRepository)
-    private readonly usersRepository: UsersRepository,
+    @InjectRepository(UserRepository)
+    private readonly usersRepository: UserRepository,
     @Inject(forwardRef(() => AuthService))
     private authService: AuthService
   ) {}
@@ -80,8 +80,7 @@ export class UsersService {
     const {
       username,
       password,
-      role,
-      permissions
+      role
     } = userDto;
 
     return forkJoin({

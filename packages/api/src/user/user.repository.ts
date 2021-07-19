@@ -7,17 +7,17 @@ import {
 } from "rxjs/operators";
 import { Repository, EntityRepository, Raw } from "typeorm";
 import { plainToClass } from "class-transformer";
-import { User } from "@users/entities/user.entity";
+import { User } from "@user/entities/user.entity";
 import { checkEntity } from "@shared/utils";
 import {
-  UsersEntity,
+  UserEntity,
   LIST_GROUP,
   FIND_GROUP,
   EDIT_GROUP,
-} from "@users/users.serializer";
+} from "@user/user.serializer";
 
 @EntityRepository(User)
-export class UsersRepository extends Repository<User> {
+export class UserRepository extends Repository<User> {
   errorMessage: string = "Пользователь не существует";
 
   private dbRequest(username: string) {
@@ -29,9 +29,8 @@ export class UsersRepository extends Repository<User> {
 
   list() {
     return this.createQueryBuilder("u")
-      .select(["u.id", "u.username", "r.name", "u.time", "u.isActive"])
+      .select(["u.id", "u.username", "r.name"])
       .leftJoin("u.role", "r", "u.roleId = r.id")
-      .orderBy("u.time", "ASC");
   }
 
   edit(username: string) {
@@ -97,11 +96,11 @@ export class UsersRepository extends Repository<User> {
     );
   }
 
-  transform(users: User | User[], options?: object) {
-    return plainToClass(UsersEntity, users, options);
-  }
-
   transformList(users: User[]) {
     return this.transform(users, LIST_GROUP);
+  }
+
+  transform(users: User | User[], options?: object) {
+    return plainToClass(UserEntity, users, options);
   }
 }

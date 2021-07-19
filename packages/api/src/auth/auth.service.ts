@@ -1,4 +1,4 @@
-import { Observable, of, from, throwError, forkJoin } from "rxjs";
+import { Observable, of, from, throwError } from "rxjs";
 import { map, mergeMap, mapTo } from "rxjs/operators";
 import {
   Injectable,
@@ -11,23 +11,25 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { compare } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
-import { UsersService } from "@users/services/users.service";
-import { CreateUserDto } from "@users/dto/create-user.dto";
-import { LoginUserDto } from "@users/dto/login-user.dto";
+import { UserService } from "@user/user.service";
+import { CreateUserDto } from "@user/dto/create-user.dto";
+import { LoginUserDto } from "@user/dto/login-user.dto";
 import { LoginStatus } from "@auth/interfaces/login-status.interface";
 import { JwtPayload } from "@auth/interfaces/payload.interface";
-import { User } from "@users/entities/user.entity";
+import { User, UserInfo } from "@user/entities";
 import { Role } from "@auth/entities/role.entity";
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserInfo)
+    private readonly userInfoRepository: Repository<UserInfo>,
     @InjectRepository(Role)
     private readonly rolesRepository: Repository<Role>,
-    @Inject(forwardRef(() => UsersService))
-    private usersService: UsersService,
+    @Inject(forwardRef(() => UserService))
+    private userService: UserService,
     private jwtService: JwtService
   ) {}
 
@@ -36,7 +38,7 @@ export class AuthService {
    * @param payload
    */
   validateUser(payload: JwtPayload) {
-    return this.usersService.findByUsername(payload.username);
+    return this.userService.findByUsername(payload.username);
   }
 
   /**
@@ -44,7 +46,7 @@ export class AuthService {
    * @param username
    */
   checkUser(username: string) {
-    return from(this.usersRepository.findOne({ where: { username } })).pipe(
+    return from(this.userRepository.findOne({ where: { username } })).pipe(
       mergeMap((user) =>
         user
           ? throwError(
@@ -80,16 +82,12 @@ export class AuthService {
    * @param userDto логин и пароль пользователя
    */
   register(userDto: CreateUserDto): Observable<{ message: string }> {
-    const { username, password, role } = userDto;
+    const { username, role, info, ...rest  } = userDto;
 
     return this.checkUser(username).pipe(
-      mergeMap(() =>
-        forkJoin({
-          roleId: this.checkRole(role).pipe(map(({ id }) => id)),
-        })
-      ),
-      mergeMap(({ roleId }) =>
-        of(this.usersRepository.create({ username, password })).pipe(
+      mergeMap(() => this.checkRole(role).pipe(map(({ id }) => id))),
+      mergeMap((roleId) =>
+        of(this.userRepository.create({ username, ...rest })).pipe(
           map((newUser) => {
             newUser.roleId = roleId;
 
@@ -97,7 +95,9 @@ export class AuthService {
           })
         )
       ),
-      mergeMap((readyUser) => from(this.usersRepository.save(readyUser))),
+      mergeMap((readyUser) => from(this.userRepository.save(readyUser))),
+      map((savedUser) => this.userInfoRepository.create({ ...info, userId: savedUser.id})),
+      mergeMap((userInfo) => from(this.userInfoRepository.save(userInfo))),
       mapTo({ message: `Пользователь ${username} добавлен` })
     );
   }
@@ -108,7 +108,7 @@ export class AuthService {
    */
   login({ username, password }: LoginUserDto): Observable<LoginStatus> {
     return from(
-      this.usersRepository.findOne({
+      this.userRepository.findOne({
         where: { username },
         relations: ["role"],
       })

@@ -2,7 +2,7 @@ import { Observable } from "rxjs";
 import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { map } from "rxjs/operators";
-import { UserDto } from "@users/dto/user.dto";
+import { UserDto } from "@user/dto/user.dto";
 
 @Injectable()
 export class RolesGuard implements CanActivate {

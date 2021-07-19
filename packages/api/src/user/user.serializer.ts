@@ -6,7 +6,7 @@ export const LIST_GROUP = groupSerial("list");
 export const FIND_GROUP = groupSerial("find");
 export const EDIT_GROUP = groupSerial("edit");
 
-export class UsersEntity {
+export class UserEntity {
   @Expose({ groups: ["find"] })
   id!: string;
 
@@ -15,12 +15,6 @@ export class UsersEntity {
 
   @Exclude()
   password!: string;
-
-  @Expose({ groups: ["list"] })
-  time!: string;
-
-  @Expose({ groups: ["list", "find", "edit"] })
-  isActive!: boolean;
 
   @Exclude()
   roleId!: string;

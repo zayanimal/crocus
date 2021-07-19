@@ -7,13 +7,8 @@
       "@/*": ["src/*"],
       "@shared/*": ["src/shared/*"],
       "@auth/*": ["src/auth/*"],
-      "@dictionary/*": ["src/dictionary/*"],
-      "@users/*": ["src/users/*"],
-      "@contacts/*": ["src/contacts/*"],
-      "@company/*": ["src/company/*"],
-      "@good/*": ["src/good/*"],
-      "@order/*": ["src/order/*"],
-      "@enduser/*": ["src/enduser/*"]
+      "@user/*": ["src/user/*"],
+      "@brand/*": ["src/brand/*"]
     }
   },
   "exclude": ["node_modules"],
