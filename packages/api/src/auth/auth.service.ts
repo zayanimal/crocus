@@ -33,18 +33,10 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  /**
-   * Проверка пользователя для аутентификации
-   * @param payload
-   */
   validateUser(payload: JwtPayload) {
     return this.userService.findByUsername(payload.username);
   }
 
-  /**
-   * Проверка существования пользователя
-   * @param username
-   */
   checkUser(username: string) {
     return from(this.userRepository.findOne({ where: { username } })).pipe(
       mergeMap((user) =>
@@ -60,10 +52,6 @@ export class AuthService {
     );
   }
 
-  /**
-   * Проверка существования введеной роли в словаре ролей
-   * @param role
-   */
   checkRole(role: string) {
     return from(this.rolesRepository.findOne({ where: { name: role } })).pipe(
       mergeMap((role) =>
@@ -76,11 +64,6 @@ export class AuthService {
     );
   }
 
-
-  /**
-   * Проверить существует ли пользователь в базе, если нет создать нового
-   * @param userDto логин и пароль пользователя
-   */
   register(userDto: CreateUserDto): Observable<{ message: string }> {
     const { username, role, info, ...rest  } = userDto;
 
@@ -102,10 +85,6 @@ export class AuthService {
     );
   }
 
-  /**
-   * Проверить есть ли пользователь в базе и соответствует ли его пароль
-   * @param param введеные пользователем логин и пароль
-   */
   login({ username, password }: LoginUserDto): Observable<LoginStatus> {
     return from(
       this.userRepository.findOne({

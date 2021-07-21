@@ -23,7 +23,7 @@ export class UserRepository extends Repository<User> {
   private dbRequest(username: string) {
     return {
       where: { username },
-      relations: ["role", "permissions"],
+      relations: ["role"],
     };
   }
 
