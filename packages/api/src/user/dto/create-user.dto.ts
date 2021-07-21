@@ -1,4 +1,5 @@
 import { IsNotEmpty } from "class-validator";
+import { UserInfo } from '@user/entities'
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -11,5 +12,5 @@ export class CreateUserDto {
   role!: string;
 
   @IsNotEmpty()
-  permissions!: string[];
+  info!: UserInfo
 }

@@ -1,5 +1,5 @@
-import { Observable, of, from, throwError, forkJoin } from "rxjs";
-import { toArray, map, mergeMap, mapTo } from "rxjs/operators";
+import { Observable, of, from, throwError } from "rxjs";
+import { map, mergeMap, mapTo } from "rxjs/operators";
 import {
   Injectable,
   HttpException,
@@ -11,43 +11,34 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { compare } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
-import { UsersService } from "@users/services/users.service";
-import { CreateUserDto } from "@users/dto/create-user.dto";
-import { LoginUserDto } from "@users/dto/login-user.dto";
+import { UserService } from "@user/user.service";
+import { CreateUserDto } from "@user/dto/create-user.dto";
+import { LoginUserDto } from "@user/dto/login-user.dto";
 import { LoginStatus } from "@auth/interfaces/login-status.interface";
 import { JwtPayload } from "@auth/interfaces/payload.interface";
-import { Users } from "@users/entities/users.entity";
-import { Roles } from "@auth/entities/roles.entity";
-import { Permissions } from "@auth/entities/permissions.entity";
+import { User, UserInfo } from "@user/entities";
+import { Role } from "@auth/entities/role.entity";
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>,
-    @InjectRepository(Roles)
-    private readonly rolesRepository: Repository<Roles>,
-    @InjectRepository(Permissions)
-    private readonly permissionsRepository: Repository<Permissions>,
-    @Inject(forwardRef(() => UsersService))
-    private usersService: UsersService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserInfo)
+    private readonly userInfoRepository: Repository<UserInfo>,
+    @InjectRepository(Role)
+    private readonly rolesRepository: Repository<Role>,
+    @Inject(forwardRef(() => UserService))
+    private userService: UserService,
     private jwtService: JwtService
   ) {}
 
-  /**
-   * Проверка пользователя для аутентификации
-   * @param payload
-   */
   validateUser(payload: JwtPayload) {
-    return this.usersService.findByUsername(payload.username);
+    return this.userService.findByUsername(payload.username);
   }
 
-  /**
-   * Проверка существования пользователя
-   * @param username
-   */
   checkUser(username: string) {
-    return from(this.usersRepository.findOne({ where: { username } })).pipe(
+    return from(this.userRepository.findOne({ where: { username } })).pipe(
       mergeMap((user) =>
         user
           ? throwError(
@@ -61,10 +52,6 @@ export class AuthService {
     );
   }
 
-  /**
-   * Проверка существования введеной роли в словаре ролей
-   * @param role
-   */
   checkRole(role: string) {
     return from(this.rolesRepository.findOne({ where: { name: role } })).pipe(
       mergeMap((role) =>
@@ -77,67 +64,32 @@ export class AuthService {
     );
   }
 
-  /**
-   * Проверка существования введеных прав в словаре прав
-   * @param permissions
-   */
-  checkPermissions(permissions: string[]) {
-    return from(
-      this.permissionsRepository
-        .createQueryBuilder("permissions")
-        .where("permissions.name IN (:...name)", { name: permissions })
-        .getMany()
-    ).pipe(
-      mergeMap((foundPerm) => {
-        if (!foundPerm.length || foundPerm.length !== permissions.length) {
-          return throwError(
-            new HttpException("Введены неверные права", HttpStatus.BAD_REQUEST)
-          );
-        }
-
-        return from(foundPerm).pipe(toArray());
-      })
-    );
-  }
-
-  /**
-   * Проверить существует ли пользователь в базе, если нет создать нового
-   * @param userDto логин и пароль пользователя
-   */
   register(userDto: CreateUserDto): Observable<{ message: string }> {
-    const { username, password, role, permissions } = userDto;
+    const { username, role, info, ...rest  } = userDto;
 
     return this.checkUser(username).pipe(
-      mergeMap(() =>
-        forkJoin({
-          roleId: this.checkRole(role).pipe(map(({ id }) => id)),
-          permissions: this.checkPermissions(permissions),
-        })
-      ),
-      mergeMap(({ roleId, permissions }) =>
-        of(this.usersRepository.create({ username, password })).pipe(
+      mergeMap(() => this.checkRole(role).pipe(map(({ id }) => id))),
+      mergeMap((roleId) =>
+        of(this.userRepository.create({ username, ...rest })).pipe(
           map((newUser) => {
             newUser.roleId = roleId;
-            newUser.permissions = permissions;
 
             return newUser;
           })
         )
       ),
-      mergeMap((readyUser) => from(this.usersRepository.save(readyUser))),
+      mergeMap((readyUser) => from(this.userRepository.save(readyUser))),
+      map((savedUser) => this.userInfoRepository.create({ ...info, userId: savedUser.id})),
+      mergeMap((userInfo) => from(this.userInfoRepository.save(userInfo))),
       mapTo({ message: `Пользователь ${username} добавлен` })
     );
   }
 
-  /**
-   * Проверить есть ли пользователь в базе и соответствует ли его пароль
-   * @param param введеные пользователем логин и пароль
-   */
   login({ username, password }: LoginUserDto): Observable<LoginStatus> {
     return from(
-      this.usersRepository.findOne({
+      this.userRepository.findOne({
         where: { username },
-        relations: ["role", "permissions"],
+        relations: ["role"],
       })
     ).pipe(
       mergeMap((user) =>
@@ -167,9 +119,7 @@ export class AuthService {
           id: user.id,
           username: user.username,
         }),
-        role: user.role.name,
-        isActive: user.isActive,
-        permissions: user.permissions.map(({ name }) => name),
+        role: user.role.name
       }))
     );
   }
