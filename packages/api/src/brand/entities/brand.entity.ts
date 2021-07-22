@@ -1,10 +1,10 @@
+import { User } from "@user/entities";
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  ManyToOne
 } from "typeorm";
-
-import { Constructor } from '@shared/types'
 
 @Entity()
 export class Brand {
@@ -28,4 +28,10 @@ export class Brand {
 
   @Column({ type: "varchar", length: 40 })
   malls!: string;
+
+  @Column({ type: "varchar" })
+  userId!: string;
+
+  @ManyToOne(() => User, (user) => user.brand, { cascade: true, onDelete: "CASCADE" })
+  user!: User;
 }
