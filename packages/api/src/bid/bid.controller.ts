@@ -1,15 +1,18 @@
-import { Controller, UseGuards, Get, Req } from '@nestjs/common';
+import { Observable, of } from 'rxjs';
+import { Controller, UseGuards, Put, Req, Body } from '@nestjs/common';
 import { JwtAuthGuard } from "@auth/guards/jwt-auth.guard";
 import { Request } from "express";
 import { BidService } from '../bid/bid.service'
+import { BidDto } from './dto'
+import { UserObservable } from '@shared/types'
 
 @Controller('bid')
 export class BidController {
     constructor(private readonly bidService: BidService) {}
 
-    @Get('current')
+    @Put('create')
     @UseGuards(JwtAuthGuard)
-    current(@Req() req: Request) {
-        return req.user;
+    create(@Req() req: Request, @Body() bid: BidDto) {
+        return this.bidService.create(req.user as UserObservable, bid)
     }
 }

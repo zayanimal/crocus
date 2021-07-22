@@ -5,11 +5,13 @@ import {
   BeforeInsert,
   JoinColumn,
   ManyToOne,
-  OneToOne
+  OneToOne,
+  OneToMany
 } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { Role } from "@auth/entities/role.entity";
 import { UserInfo } from '@user/entities'
+import { Brand } from '@brand/entities'
 
 @Entity()
 export class User {
@@ -31,6 +33,9 @@ export class User {
 
   @OneToOne(() => UserInfo)
   info!: UserInfo;
+
+  @OneToMany(() => Brand, (brand) => brand.user)
+  brand!: Brand[];
 
   @BeforeInsert() async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
