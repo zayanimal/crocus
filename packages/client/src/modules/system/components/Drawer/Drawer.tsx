@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '@icons/logo.png'
 import { LayoutProps } from '@system/containers/Layout'
 import { bem } from '@interaktiv/utils'
 import { DrawerIcon } from './DrawerIcon'
@@ -31,9 +30,8 @@ const Drawer: React.FC<LayoutProps> = (props) => {
 
     return (
         <aside className={drawerState ? cn('', 'close') : cn()}>
-            <div className={cn('header')}>
-                <img src={logo} alt="Iskor" hidden={hide} />
-            </div>
+            <div className={cn('header')} />
+
             <ul className={cn('list')}>
                 {routerItems.map((menuItem) => (
                     <li key={menuItem.key}>

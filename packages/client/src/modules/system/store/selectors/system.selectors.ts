@@ -22,7 +22,7 @@ export const username = (state: RootStateTypes) => systemState(state).username
 
 export const password = (state: RootStateTypes) => systemState(state).password
 
-export const role = (state: RootStateTypes) => systemState(state).role
+export const role = (state: RootStateTypes): Role => systemState(state).role
 
 export const credentials = (state: RootStateTypes) =>
     _.pick(systemState(state), ['username', 'password'])
@@ -30,5 +30,3 @@ export const credentials = (state: RootStateTypes) =>
 export const authFetched = (state: RootStateTypes) => systemState(state).authFetched
 
 export const isLoggedIn = (state: RootStateTypes) => systemState(state).isLoggedIn
-
-export const permissions = (state: RootStateTypes) => systemState(state).permissions

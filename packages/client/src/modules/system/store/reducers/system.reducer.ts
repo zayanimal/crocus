@@ -7,8 +7,7 @@ export interface SystemStateTypes {
     isLoggedIn: boolean
     username: string
     password: string
-    permissions: string[]
-    role: string
+    role: Role
     drawer: boolean
     routerItems: IRouterItem[]
     headerTitle: string
@@ -22,8 +21,7 @@ const initialState: SystemStateTypes = {
     isLoggedIn: false,
     username: '',
     password: '',
-    permissions: [],
-    role: '',
+    role: 'user',
 
     drawer: false,
     routerItems: [],
@@ -50,7 +48,6 @@ const systemReducer = createReducer<SystemStateTypes>(initialState, {
         authFetched: true,
         isLoggedIn: true,
         username: payload?.username,
-        permissions: payload?.permissions,
         role: payload?.role
     }),
 
@@ -60,9 +57,8 @@ const systemReducer = createReducer<SystemStateTypes>(initialState, {
         isLoggedIn: false,
         username: '',
         password: '',
-        permissions: [],
         routerItems: [],
-        role: ''
+        role: 'user'
     }),
 
     [getType(systemActions.setDrawerState)]: (state, { payload }) => ({

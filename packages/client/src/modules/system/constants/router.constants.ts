@@ -1,11 +1,20 @@
-import { IRouterItem } from '@system/interfaces/router.interface'
-
-export const ROUTE_ITEMS: IRouterItem[] = [
-    {
-        key: 'USERS',
-        path: '/users',
-        name: 'Пользователи',
-        icon: 'People',
-        component: 'Users'
-    }
-]
+export const ROUTE = {
+    USER: [
+        {
+            key: 'USERS',
+            path: '/users',
+            name: 'Брэнды',
+            icon: 'People',
+            component: 'Users'
+        }
+    ],
+    ADMIN: [
+        {
+            key: 'USERS',
+            path: '/users',
+            name: 'Брэнды',
+            icon: 'People',
+            component: 'Users'
+        }
+    ]
+}
