@@ -9,7 +9,7 @@ import {
 @Entity()
 export class Brand {
   @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  id?: string;
 
   @Column({ type: "varchar", length: 30 })
   type!: string;

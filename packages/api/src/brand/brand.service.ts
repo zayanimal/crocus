@@ -1,8 +1,7 @@
-import { of, from } from "rxjs";
-import { mergeMap, map, mapTo } from "rxjs/operators";
+import { from, throwError } from "rxjs";
+import { mergeMap, map, mapTo, catchError } from "rxjs/operators";
 import {
     Injectable,
-    Inject,
     InternalServerErrorException
 } from "@nestjs/common";
 import { Repository } from 'typeorm';
@@ -18,7 +17,7 @@ export class BrandService {
         private readonly brandRepository: Repository<Brand>
     ) {}
 
-    create(user: UserObservable, brand: BrandDto) {
+    public create(user: UserObservable, brand: BrandDto) {
         return from(user).pipe(
             map((user) => user.id),
             map((userId) => this.brandRepository.create({
@@ -26,11 +25,15 @@ export class BrandService {
                 ...brand
             })),
             mergeMap((createdBrand) => this.brandRepository.save(createdBrand)),
-            mapTo({ message: 'Бренд добавлен' })
+            mapTo({ message: 'Бренд добавлен' }),
+
+            catchError((err) => throwError(new InternalServerErrorException(err.message)))
         );
     }
 
-    getList() {
-        return this.brandRepository.find()
+    public getList(user: UserObservable) {
+        return from(user).pipe(
+            mergeMap(({ id }) => this.brandRepository.find({ userId: id }))
+        );
     }
 }

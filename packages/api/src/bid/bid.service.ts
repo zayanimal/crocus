@@ -1,6 +1,6 @@
-import { forkJoin, from, Observable, of } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
-import { Injectable } from '@nestjs/common';
+import { forkJoin, of, from, Observable, throwError } from 'rxjs';
+import { mergeMap, map, mapTo, catchError } from 'rxjs/operators';
+import { Injectable, InternalServerErrorException, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bid } from './entities';
@@ -8,7 +8,6 @@ import { UserInfo } from '../user/entities';
 import { Brand } from '../brand/entities';
 import { BidDto } from './dto';
 import { UserCurrentDto } from '../user/dto'
-import { User } from '@user/entities';
 
 @Injectable()
 export class BidService {
@@ -21,13 +20,45 @@ export class BidService {
         private readonly brandRepository: Repository<Brand>
     ) {}
 
-    create(user: Observable<UserCurrentDto>, bid: BidDto) {
+    public create(user: Observable<UserCurrentDto>, bid: BidDto) {
         return from(user).pipe(
             mergeMap(({ id }) => forkJoin([
                 this.userInfoRepository.findOne({ userId: id }),
-                // TODO: проверка на соответствие юзеру
-                this.brandRepository.findOne({ id: bid.brandId })
-            ]))
-        )
+                this.brandRepository.findOne({ id: bid.brandId, userId: id })
+            ])),
+            map(([userInfo, brand]) => {
+                this.checkUserInfo(userInfo)
+                this.checkBrand(brand)
+
+                const bid = { ...this.checkUserInfo(userInfo), ...this.checkBrand(brand) }
+                delete bid.id;
+
+                return this.bidRepository.create(bid)
+            }),
+            mergeMap((createdUser) => this.bidRepository.save(createdUser)),
+            mapTo({ message: 'Заявка добавлена' })
+        );
+    }
+
+    public getList(user: Observable<UserCurrentDto>) {
+        return from(user).pipe(
+            mergeMap(({ id }) =>  this.bidRepository.find({ userId: id }))
+        );
+    }
+
+    private checkUserInfo(userInfo?: UserInfo) {
+        if (userInfo) {
+            return userInfo;
+        }
+
+        throw new BadRequestException('У пользователя нет контактов');
+    }
+
+    private checkBrand(brand?: Brand) {
+        if (brand) {
+            return brand;
+        }
+
+        throw new BadRequestException('У пользователя нет брэнда');
     }
 }

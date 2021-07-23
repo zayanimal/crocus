@@ -22,15 +22,15 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Put("register")
-  // @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles("admin")
   register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
   }
 
   @Post("login")
-  login(@Body() loginUserDto: LoginUserDto): Observable<LoginStatus> {
-    return this.authService.login(loginUserDto);
+  login(@Body() loginUser: LoginUserDto): Observable<LoginStatus> {
+    return this.authService.login(loginUser);
   }
 
   @Get("current")
