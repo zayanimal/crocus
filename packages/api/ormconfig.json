@@ -1,6 +1,6 @@
 {
   "type": "postgres",
-  "host": "pgsql",
+  "host": "interaktiv.iskor.ru",
   "port": 5432,
   "username": "postgres",
   "password": "secret",
