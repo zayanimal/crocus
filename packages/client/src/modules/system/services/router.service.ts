@@ -1,10 +1,21 @@
-import { IRouterService } from '@system/interfaces'
-import { ROUTE_ITEMS } from '@system/constants/router.constants'
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
+import { ROLE, ROUTE } from '@system/constants'
 
-export class RouterService implements IRouterService {
-    public getRouterItems(keys: string[]) {
-        return ROUTE_ITEMS.filter(
-            (item) => item.key === keys.find((key: string) => item.key === key)
-        )
+export class RouterService {
+    public getRouterItems(role: Role) {
+        switch(role) {
+            case ROLE.ADMIN: {
+                return ROUTE.ADMIN
+            }
+
+            case ROLE.USER: {
+                return ROUTE.USER
+            }
+
+            default: {
+                return [];
+            }
+        }
     }
 }

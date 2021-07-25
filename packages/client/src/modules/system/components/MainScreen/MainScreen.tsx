@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom'
+import React, { Suspense, useEffect } from 'react'
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import { Drawer } from '@system/components/Drawer'
 import { Header } from '@system/components/Header'
 import { Preloader } from '@interaktiv/ui/Preloader'
@@ -13,6 +13,11 @@ const cn = bem('MainScreen')
 const MainScreen: React.FC<LayoutProps> = (props) => {
     const { isLoggedIn, routerItems } = props
     const location = useLocation()
+    const history = useHistory()
+
+    useEffect(() => {
+        history.push('/brand')
+    }, [])
 
     if (isLoggedIn) {
         return (

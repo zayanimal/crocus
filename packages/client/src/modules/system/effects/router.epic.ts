@@ -11,8 +11,8 @@ export const getRouterItems: Epic = (action$, state$, { router }) =>
         switchMap(() =>
             state$.pipe(
                 first(),
-                map(systemSelectors.permissions),
-                map((permissions) => router.getRouterItems(permissions)),
+                map(systemSelectors.role),
+                map((role) => router.getRouterItems(role)),
                 map(systemActions.setRouterItems),
                 catchError((err, caught) =>
                     merge(caught, of(systemActions.errorNotification(err.message)))

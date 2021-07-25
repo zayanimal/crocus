@@ -34,8 +34,8 @@ export class UserController {
   }
 
   @Get()
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles("admin")
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles("admin")
   getUsers(
     @Query("page", ParseIntPipe) page: number,
     @Query("limit", ParseIntPipe) limit: number

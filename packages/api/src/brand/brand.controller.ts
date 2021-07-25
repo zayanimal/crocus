@@ -1,13 +1,9 @@
 import {
     Controller,
-    Delete,
     Get,
     Put,
     Req,
-    Param,
-    Query,
     UseGuards,
-    ParseIntPipe,
     Body
 } from "@nestjs/common";
 import { Request } from 'express'
@@ -27,7 +23,8 @@ export class BrandController {
     }
 
     @Get()
-    getList() {
-        return this.brandService.getList();
+    @UseGuards(JwtAuthGuard)
+    getList(@Req() req: Request) {
+        return this.brandService.getList(req.user as UserObservable);
     }
 }
