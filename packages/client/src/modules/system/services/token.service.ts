@@ -8,8 +8,9 @@ export class TokenService implements ITokenService {
         if (!this.token) return true
 
         const THOUSAND = 1000
+        const ONE = 1
 
-        const jwt = JSON.parse(atob(this.token.split('.')[1]))
+        const jwt = JSON.parse(atob(this.token.split('.')[ONE]))
         const exp = jwt && jwt.exp && jwt.exp * THOUSAND
 
         return exp ? Date.now() > exp : false

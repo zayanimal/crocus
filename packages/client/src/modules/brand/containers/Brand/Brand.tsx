@@ -7,6 +7,7 @@ import { systemActions } from '@system/store/actions'
 import { listActions } from '@brand/actions'
 import { listSelectors } from '@brand/selectors'
 import { BrandList } from '@brand/components/BrandList'
+import { BrandControl } from '@brand/containers/BrandControl'
 
 const mapStateToProps = (state: RootStateTypes) => ({
     list: listSelectors.list(state)
@@ -35,7 +36,7 @@ const Brand: FC<BrandProps> = (props) => {
 
     return (
         <Switch>
-            {/* <Route path={`${path}/add`} component={} /> */}
+            <Route path={`${path}/add`} component={BrandControl} />
             {/* <Route path={`${path}/edit/:brand`} component={} /> */}
             <Route exact path={path} render={() => <BrandList {...rest} />} />
         </Switch>

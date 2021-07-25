@@ -1,17 +1,15 @@
 export class Brand {
-    id!: string
+    id? = ''
 
-    type!: string
+    type = ''
 
-    name!: string
+    name = ''
 
-    brandNames!: string
+    brandNames = ''
 
-    shopTotal!: number
+    shopTotal = '0'
 
-    shopsInMalls!: number
+    shopsInMalls = '0'
 
-    malls!: string
-
-    userId!: string
+    malls = ''
 }
