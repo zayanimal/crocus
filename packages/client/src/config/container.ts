@@ -15,6 +15,7 @@ export const dependencies = {
     dictionary: new System.DictionaryService(restService),
     users: new Main.UsersService(restService),
     brandList: new Brand.ListService(restService),
+    brandControl: new Brand.ControlService(restService),
     bidList: new Bid.ListService(restService)
 }
 

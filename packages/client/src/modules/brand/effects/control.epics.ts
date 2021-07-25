@@ -6,7 +6,7 @@ import { systemActions } from '@system/store/actions'
 import { controlActions } from '@brand/actions'
 import { controlSelectors } from '@brand/selectors'
 
-export const addBrand: Epic = (action$, state$, { brandList }) =>
+export const addBrand: Epic = (action$, state$, { brandControl }) =>
     action$.pipe(
         filter(isActionOf(controlActions.addBrand.request)),
         mergeMap(() =>
@@ -14,7 +14,7 @@ export const addBrand: Epic = (action$, state$, { brandList }) =>
                 first(),
                 map((state) => controlSelectors.brand(state)),
                 mergeMap((dto) =>
-                    brandList.addBrand$({
+                    brandControl.addBrand$({
                         ...dto,
                         shopsInMalls: parseInt(dto.shopsInMalls, 10),
                         shopTotal: parseInt(dto.shopTotal, 10)
