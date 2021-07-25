@@ -1,4 +1,6 @@
 {
   "extends": ["../../.eslintrc"],
-  "rules": {}
+  "rules": {
+    "no-magic-numbers": ["error", { "ignore": [0] }]
+  }
 }
