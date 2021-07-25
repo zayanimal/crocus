@@ -7,6 +7,8 @@
             "@config/*": ["config/*"],
             "@shared/*": ["modules/shared/*"],
             "@main/*": ["modules/main/*"],
+            "@brand/*": ["modules/brand/*"],
+            "@bid/*": ["modules/bid/*"],
             "@system/*": ["modules/system/*"],
             "@images/*": ["assets/images/*"],
             "@icons/*": ["assets/icons/*"],

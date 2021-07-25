@@ -1,6 +1,6 @@
-export type LazyComponents = 'Users'
+export type LazyComponents = 'Users' | 'Brand' | 'Bid'
 
-export interface IRouterItem {
+export interface RouterItem {
     key: string
     path: string
     name: string

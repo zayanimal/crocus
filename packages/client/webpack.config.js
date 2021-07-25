@@ -68,6 +68,8 @@ module.exports = {
             '@config': path.resolve(__dirname, 'src', 'config'),
             '@shared': path.resolve(__dirname, 'src', 'modules/shared'),
             '@main': path.resolve(__dirname, 'src', 'modules/main'),
+            '@brand': path.resolve(__dirname, 'src', 'modules/brand'),
+            '@bid': path.resolve(__dirname, 'src', 'modules/bid'),
             '@system': path.resolve(__dirname, 'src', 'modules/system'),
             '@images': path.resolve(__dirname, 'src', 'assets/images'),
             '@icons': path.resolve(__dirname, 'src', 'assets/icons'),

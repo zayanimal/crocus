@@ -35,7 +35,7 @@ const AuthForm: React.FC<AuthProps> = (props) => {
     return (
         <div className={cn()}>
             <form className={cn('form')}>
-                <h3>ISKOR Interaktiv</h3>
+                <h3>CROKUS аренда</h3>
                 <TextField
                     value={username}
                     onChange={onChangeLogin}

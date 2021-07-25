@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { createAction } from 'typesafe-actions'
-import { IUser } from '@system/interfaces/user.interface'
+import { IUser, RouterItem } from '@system/interfaces'
 
 export const setLogin = createAction('[SYSTEM] SET_LOGIN')<string>()
 export const setPassword = createAction('[SYSTEM] SET_PASSWORD')<string>()
@@ -15,7 +15,7 @@ export const getUsername = createAction('[SYSTEM] GET_USERNAME')()
 
 export const getRouterItems = createAction('[SYSTEM] GET_ROUTER_ITEMS')()
 
-export const setRouterItems = createAction('[SYSTEM] SET_ROUTER_ITEMS')<any[]>()
+export const setRouterItems = createAction('[SYSTEM] SET_ROUTER_ITEMS')<RouterItem[]>()
 
 export const getDrawerState = createAction('[SYSTEM] GET_DRAWER_STATE')()
 export const setLsDrawerState = createAction(
