@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "lerna run --scope @interaktiv/client start; @interaktiv/api start:dev --stream",
+    "start": "lerna run --scope @interaktiv/client --scope @interaktiv/api start --stream",
     "start:ui": "lerna run --scope @interaktiv/client start --stream",
     "start:api": "lerna run --scope @interaktiv/api start:dev --stream",
     "lint:fix": "eslint --fix src/**/*.ts{,x}"
