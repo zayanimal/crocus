@@ -16,8 +16,8 @@ export const addBrand: Epic = (action$, state$, { brandControl }) =>
                 mergeMap((dto) =>
                     brandControl.addBrand$({
                         ...dto,
-                        shopsInMalls: parseInt(dto.shopsInMalls, 10),
-                        shopTotal: parseInt(dto.shopTotal, 10)
+                        shopsInMalls: parseInt(dto.shopsInMalls, 10) || 0,
+                        shopTotal: parseInt(dto.shopTotal, 10) || 0
                     })
                 )
             )

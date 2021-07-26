@@ -1,3 +1,7 @@
 .BrandControl {
-
+    &__select {
+        & + & {
+            margin-top: 3em;
+        }
+    }
 }
