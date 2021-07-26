@@ -21,6 +21,10 @@ export const editBrand = createAsyncAction(
 
 export const set = createAction('[BRAND] SET')<object>()
 
+export const setType = createAction('[BRAND] SET_TYPE')<unknown>()
+
+export const setMalls = createAction('[BRAND] SET_MALLS')<unknown>()
+
 export const setEditMode = createAction('[BRAND] SET_EDIT_MODE')<boolean>()
 
 export const clear = createAction('[BRAND] CLEAR')<undefined>()

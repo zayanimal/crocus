@@ -7,9 +7,9 @@ export class Brand {
 
     brandNames = ''
 
-    shopTotal = '0'
+    shopTotal = ''
 
-    shopsInMalls = '0'
+    shopsInMalls = ''
 
     malls = ''
 }

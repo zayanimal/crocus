@@ -22,6 +22,16 @@ export const control = createReducer<State>(initialState, {
         ...payload
     }),
 
+    [getType(controlActions.setType)]: (state, { payload }) => ({
+        ...state,
+        type: payload
+    }),
+
+    [getType(controlActions.setMalls)]: (state, { payload }) => ({
+        ...state,
+        malls: payload
+    }),
+
     [getType(controlActions.setEditMode)]: (state, { payload }) => ({
         ...state,
         editMode: payload
